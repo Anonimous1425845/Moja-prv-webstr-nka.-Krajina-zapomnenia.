@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "Mojangles";
+    src: url('../assets/minecraftseven.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+body {
+    background-color: rgb(32, 32, 32);
+    color: rgb(190, 190, 190);
+    font-family: "Mojangles", sans-serif;
+}
+/* responzívna iframe obálka: na mobile použije % výšky obrazovky */
+.iframe-wrap { width:100%; max-height:60vh; }
+.iframe-wrap iframe {
+        width:100%;
+        height:100%;
+        min-height:220px;    /* minimálna výška pre čitateľnosť */
+        max-height:60vh;     /* zabráni príliš veľkej výške na mobile */
+        border:0;
+        color:rgb(190, 190, 190);
+        display:block;
+    }
+/* optional: upraviť summary vzhľad */
+details summary { list-style: none; cursor: pointer; }
+details summary::-webkit-details-marker { display: none; }
