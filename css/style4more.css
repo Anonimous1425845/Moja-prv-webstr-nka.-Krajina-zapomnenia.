@@ -1,0 +1,51 @@
+a.link {
+    display: block !important;
+    width: 100%;
+    text-align: center !important;
+}
+
+/* center whole page in the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* vertical center */
+    align-items: center;     /* horizontal center */
+    background-color: rgb(78, 150, 194) !important;
+}
+/* push this section to bottom of viewport */
+.bottom {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* center the marquee horizontally */
+}
+
+.main {
+    flex: 1 0 auto;              /* zaberie zostávajúci priestor medzi header a footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;     /* vertikálne centrovanie odkazov */
+    align-items: center;         /* horizontálne centrovanie */
+    width: 100%;
+}
+
+/* optionally keep links narrow and centered */
+a.link {
+    width: auto !important;
+    max-width: 90%;
+    color: rgb(77, 77, 77)!important;
+    text-decoration: overline underline !important;
+    border: 2.5px solid rgb(77, 77, 77);
+    padding: 5px;
+    margin: 8px;
+}
+
+.color{
+    color:rgb(0, 0, 0);
+    margin: 5px;
+}
