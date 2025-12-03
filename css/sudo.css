@@ -1,0 +1,37 @@
+@import url(./style.css);
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+header{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    height: 15%vw;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    height: 75%vh; /* Full viewport height */
+    width: 85%vw; /* Full viewport width minus sidebar */
+    flex: 1; /* Take remaining space above footer */
+}
+#sidebar {
+    text-align: left !important;
+    background-color: #0f6868;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    color: rgb(190, 75, 22);
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    height: 10%vw;
+}

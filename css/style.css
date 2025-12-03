@@ -26,7 +26,7 @@ details summary { list-style: none; cursor: pointer; }
 details summary::-webkit-details-marker { display: none; }
 
 .link {
-    text-decoration: none;
-    cursor: pointer;
-    color:rgb(40, 155, 190);
+    text-decoration: none !important;
+    cursor: pointer !important;
+    color:rgb(40, 155, 190)!important;
 }
