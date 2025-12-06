@@ -45,6 +45,10 @@ a.link {
     margin: 8px;
 }
 
+footer {
+    width: 100vw;
+}
+
 .color{
     color:rgb(0, 0, 0);
     margin: 5px;
