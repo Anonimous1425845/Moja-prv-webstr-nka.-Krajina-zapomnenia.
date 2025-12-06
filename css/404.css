@@ -1,0 +1,32 @@
+/* center whole page in the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* vertical center */
+    align-items: center;     /* horizontal center */
+}
+
+.main {
+    flex: 1 0 auto;              /* zaberie zostávajúci priestor medzi header a footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;     /* vertikálne centrovanie odkazov */
+    align-items: center;         /* horizontálne centrovanie */
+    width: 100%;
+}
+
+/* made video background */
+.video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* umiestni video za obsah stránky */
+    overflow: hidden;
+}
