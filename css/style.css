@@ -26,7 +26,23 @@ details summary { list-style: none; cursor: pointer; }
 details summary::-webkit-details-marker { display: none; }
 
 .link {
-    text-decoration: none !important;
-    cursor: pointer !important;
-    color:rgb(40, 155, 190)!important;
+    text-decoration: none ;
+    cursor: pointer ;
+    color:rgb(40, 155, 190);
+}
+
+.link:hover {
+    color:rgb(78, 200, 240)!important;
+    text-decoration: underline !important;
+}
+
+.dlink {
+    text-decoration: none ;
+    cursor: pointer ;
+    color:rgb(20, 118, 60);
+}
+
+.dlink:hover {
+    color:rgb(50, 200, 100)!important;
+    text-decoration: underline !important;
 }
