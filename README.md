@@ -6,4 +6,4 @@ https://ndrew.sk
 
 btw firt update bol text.html
 
-otaska pre ndrewa: čo je php?
+otázka pre ndrewa: čo je php?
