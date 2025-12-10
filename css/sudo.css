@@ -3,35 +3,77 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-color: #041d1d;
 }
-header{
-    background-color: #333;
+
+header {
+    background-color: #0c5757;
     color: #fff;
     text-align: center;
-    height: 15%vw;
+    height: 10%;
+    width: 100%;
 }
-main{
+
+#container {
     display: flex;
-    flex-direction: column;
-    height: 75%vh; /* Full viewport height */
-    width: 85%vw; /* Full viewport width minus sidebar */
-    flex: 1; /* Take remaining space above footer */
+    flex-direction: row;  /* <-- sidebar a main vedľa seba */
+    flex: 1;  /* zaberá zostávajúci priestor */
 }
+
 #sidebar {
-    text-align: left !important;
-    background-color: #0f6868;
-    width: 35%;
+    text-align: center !important;
+    background-color: #0c5757;
+    width: 15vw;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;  /* <-- ZMENENÉ z flex-start na center */
+    align-items: center;      /* <-- PRIDANÉ: horizontálne centrovanie */
     color: rgb(190, 75, 22);
+    flex-shrink: 0;
 }
+
+#sidebar a {
+    border-bottom: 1px solid #0a4040;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+}
+
 footer {
-    background-color: #333;
+    background-color: #0c5757;
     color: #fff;
     text-align: center;
-    height: 10%vw;
+    height: 10%;
+    width: 100%;
+}
+
+#mainContent{
+    color: green;
+}
+
+#mainContent img {
+    width: 75%;
+    height: auto;
+    border: 2px solid #030f0f;
+}
+
+.linkd {
+    text-decoration: none ;
+    cursor: pointer ;
+    color: green !important;
+}
+
+.linkd:hover {
+    color:rgb(25, 182, 25)!important;
+    text-decoration: underline !important;
 }

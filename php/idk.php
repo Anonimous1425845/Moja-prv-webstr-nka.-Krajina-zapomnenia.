@@ -12,7 +12,7 @@ $title = "Moja PHP stránka";
   <p>Dnešný čas: <?php echo date('Y-m-d H:i:s'); ?></p>
 
   <h2>Formulár (POST)</h2>
-  <form method="post" action="index.php">
+  <form method="post" action="idk.php">  <!-- <-- OPRAVENÉ: action musí byť idk.php, nie index.php -->
     <input name="name" placeholder="Tvoje meno">
     <button type="submit">Odoslať</button>
   </form>
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p>Ahoj, $name</p>";
 }
 ?>
+<p><a href="../home.html">back</a></p>
 </body>
 </html>
 // i hawe no idea what this does :D
