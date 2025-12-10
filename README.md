@@ -5,3 +5,5 @@ his website:
 https://ndrew.sk
 
 btw firt update bol text.html
+
+otázka pre ndrewa: čo je php?
