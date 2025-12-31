@@ -10,8 +10,13 @@ function changeColor() {
     document.getElementById("box").style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 }
 
-function sendAlert() {
-    alert("This is an alert!");
-}
+document.getElementById("myButton").addEventListener("mouseover", () => sendAlert(true));
 
-document.getElementById("myButton").addEventListener("mouseover", sendAlert());
+function sendAlert(n) {
+    if (n == true) {
+        alert("You hovered me!");
+        n = false;
+    } else {
+        alert("This is an alert!");
+    }
+}
