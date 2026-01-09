@@ -10,12 +10,13 @@ $serverTime = time();
 <head>
     <meta charset="UTF-8">
     <title>Real-Time Clock</title>
-    <style>
-    </style>
+    <link rel="stylesheet" href="./css/clock.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../assets/icons/Linux/Debian.png" type="image/png">
 </head>
 <body>
 
-<h1>Server Time Clock</h1>
+<h1>Server Clock Time</h1>
 <div id="clock"></div>
 <script src="./js/clock.js.php"></script>
 </body>
