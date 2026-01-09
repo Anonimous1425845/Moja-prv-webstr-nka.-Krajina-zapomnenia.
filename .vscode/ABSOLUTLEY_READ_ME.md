@@ -1,0 +1,1 @@
+Remove this folder(.vscode) after use on webserver this file is only dev tool for liveserver in vscode!
