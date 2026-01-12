@@ -46,3 +46,18 @@ details summary::-webkit-details-marker { display: none; }
     color:rgb(50, 200, 100)!important;
     text-decoration: underline !important;
 }
+
+/* top message box the msg.js needs this! */
+.msg {
+    position: fixed;
+    top: 20px; /* medzera od vrchu */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    z-index: 9999; /* aby to bolo nad všetkým */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
