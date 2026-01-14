@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://www.youtube.com/embed/Q71WGfFdNJk?si=wQsveT9GggC0JWb1',
         'https://www.youtube.com/embed/esJGfUJeH0I?si=NQPS2xs61ClMKCPl',
         'https://www.youtube.com/embed/LniUdvuh-3s?si=ntDXxwylpo05P36l',
-        'https://www.youtube.com/embed/mtIrVtFdVbs?si=x1g4PgEqbF-pmQ7L'
+        'https://www.youtube.com/embed/mtIrVtFdVbs?si=x1g4PgEqbF-pmQ7L',
+        'https://www.youtube.com/embed/3DdainatOdY?si=YYzNzy3TjRdE8a9b'
     ];
 
     const base = videos[Math.floor(Math.random() * videos.length)];
