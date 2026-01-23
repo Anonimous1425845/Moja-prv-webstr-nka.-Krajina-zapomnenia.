@@ -10,11 +10,14 @@
     </style>
 </head>
 <body>
-
-<button onclick="showMessage('Hotovo!')">Show Message</button>
+<input type="text" id="msgInput" value="Press Start">
+<button id="button">Show Message</button>
 
 <p><a class="link" href="home.html">back to main</a></p>
 
 <script src="js/msg.js"></script>
+<script>
+    document.getElementById("button").addEventListener("click", () => { const obsah = document.getElementById("msgInput").value; showMessage(obsah); });
+</script>
 </body>
 </html>
