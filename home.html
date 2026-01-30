@@ -7,9 +7,17 @@
     <link rel="icon" href="assets/icons/Linux/Arch.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/slider.css">
 </head>
 <body>
     <section>
+        <section>
+            <div id="duklock" class="toggle-container">
+                <input type="checkbox" id="myToggle" class="toggle-input">
+                <label for="myToggle" class="toggle-label"></label>
+                <div class="toggle-state" id="toggleValue">OFF</div>
+            </div>
+        </section>
         <p id="duklock"><a class="link" href="./duklock.html">@Duklock</a> &#129505</p>
     </section>
     <section>
@@ -74,6 +82,8 @@
     <section>
 	    Powered by <a class="dlink" href="https://nginx.org/">Nginx</a>
     </section>
+    <script src="js/slider.js"></script>
+    <script src="js/home.js"></script>
     <script>
         console.log("main loaded")
     </script>
