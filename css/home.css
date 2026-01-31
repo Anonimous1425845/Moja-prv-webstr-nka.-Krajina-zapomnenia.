@@ -1,6 +1,10 @@
 #duklock {
     position: absolute; /* Change to absolute positioning */
-    right: 0;          /* Align to the right */
-    z-index: 1;       /* Keep the z-index for layering */
+    right: 0;           /* Align to the right */
+    top: 1.5vh;             /* Prevent content fly */
     white-space: nowrap; /* Prevent text wrapping */
+}
+
+#duklock p:last-child {
+    text-align: center;
 }

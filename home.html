@@ -12,13 +12,17 @@
 <body>
     <section>
         <section>
-            <div id="duklock" class="toggle-container">
-                <input type="checkbox" id="myToggle" class="toggle-input">
-                <label for="myToggle" class="toggle-label"></label>
-                <div class="toggle-state" id="toggleValue">OFF</div>
+            <div id="duklock">
+                <p><a class="link" href="./duklock.html">@Duklock</a> &#129505</p>
+                <p>Dark-Light</p>
+                <div class="toggle-container">
+                    <input type="checkbox" id="myToggle" class="toggle-input">
+                    <label for="myToggle" class="toggle-label"></label>
+                    <div class="toggle-state" id="toggleValue"></div>
+                </div>
+                <p text >Mode</p>
             </div>
         </section>
-        <p id="duklock"><a class="link" href="./duklock.html">@Duklock</a> &#129505</p>
     </section>
     <section>
         <h1>Zdrastvuj!</h1>
@@ -85,6 +89,8 @@
     <script src="js/slider.js"></script>
     <script src="js/home.js"></script>
     <script>
+        let sliderShowStateText = false
+        updateStateText();
         console.log("main loaded")
     </script>
 </body>

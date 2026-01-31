@@ -4,11 +4,14 @@
     <label for="myToggle" class="toggle-label"></label>
     <div class="toggle-state" id="toggleValue">OFF</div>
   </div>*/
+  /*Look inside slider.js file for more explonation THIS THING NEEDS CONFIG!!!
 /* Container for toggle */
 .toggle-container {
   display: flex;
   align-items: center;
-  margin: 50px;
+  margin: 10px;
+  position: relative;
+  z-index: 2;
 }
 
 /* Hide the default checkbox */
