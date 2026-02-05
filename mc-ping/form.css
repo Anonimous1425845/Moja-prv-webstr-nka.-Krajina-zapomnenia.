@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+#hellcat{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#hellcat input{
+    background-color: rgb(64, 64, 64);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+#hellcat button{
+    padding: 10px;
+    font-size: 16px;
+    background-color: #244e4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#site-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 26, 26, 0.75);
+    color: rgba(37, 148, 70, 0.75);
+    text-align: center;
+    padding: 8px 12px;
+    z-index: 1000;
+}
+body {
+    padding-bottom: 56px;
+}

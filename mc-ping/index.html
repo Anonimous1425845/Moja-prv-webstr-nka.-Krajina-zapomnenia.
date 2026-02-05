@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC Ping</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <section>
+        <div id="hellcat">
+            <input id="server-ip" name="IP" type="text" placeholder="IP Adress (Play.Hypixel.net)">
+            <input id="server-port" name="Port" type="text" placeholder="Port (Default 25565)">
+            <button onclick="Continue()">Next</button>
+        </div>
+    </section>
+    <footer id="site-footer">
+        <p><marquee scrollamount="8" direction="left">API avibable at localhost:3000/ping. Usage localhost:3000/ping?ip=The ip&port=The port. This will return an json of ping via handshake.</p></marquee>
+    </footer>
+    <script>
+        function Continue(){
+            const IP = document.getElementById('server-ip').value
+            const Port = document.getElementById('server-port').value
+            window.location.href = `dash.html?ip=${IP}&port=${Port}`
+        }
+    </script>
+</body>
+</html>
