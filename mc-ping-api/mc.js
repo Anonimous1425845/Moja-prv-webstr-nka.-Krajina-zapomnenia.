@@ -21,7 +21,9 @@ app.get('/ping', (req, res) => {
                 server: serverIP,
                 players: result.players.online,
                 max: result.players.max,
-                version: result.version.name
+                version: result.version.name,
+                motd: result.description.text || result.description,
+                playerList: result.players.sample ? result.players.sample.map(p => p.name) : []
             });
         })
         .catch(err => {

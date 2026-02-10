@@ -2,6 +2,19 @@
     border: 2px solid #333;
     padding: 15px;
     border-radius: 10px;
-    width: 250px;
+    width: 50vh;
     background-color: rgb(50, 50, 50);
+}
+#server-version{
+    color: #757575;
+    text-decoration: underline 2px rgb(36, 36, 214) !important;
+}
+#server-motd{
+    color: #6d6d6d;
+    text-decoration: underline 1.5px #7e7e7e !important;
+}
+#player-list{
+    font-size: 0.85em;
+    color: #9c9c9c;
+    padding-left: 20px;
 }
