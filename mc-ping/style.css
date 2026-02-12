@@ -18,3 +18,12 @@
     color: #9c9c9c;
     padding-left: 20px;
 }
+button{
+    padding: 10px;
+    font-size: 16px;
+    background-color: #244e4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

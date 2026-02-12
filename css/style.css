@@ -5,10 +5,12 @@
     font-style: normal;
     font-display: swap;
 }
+* {
+    font-family: "Mojangles", sans-serif;
+}
 body {
     background-color: rgb(32, 32, 32);
     color: rgb(190, 190, 190);
-    font-family: "Mojangles", sans-serif;
 }
 /* responzívna iframe obálka: na mobile použije % výšky obrazovky */
 .iframe-wrap { width:100%; max-height:60vh; }
