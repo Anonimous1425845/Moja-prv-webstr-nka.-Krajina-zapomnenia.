@@ -3,10 +3,18 @@ const params = new URLSearchParams(window.location.search);
 const TARGET_IP = params.get('ip') || 'play.hypixel.net';
 const TARGET_PORT = params.get('port') || 25565;
 
+// Toggle localhost api
+const DebugAPIConnect = false
+
 async function updateStatus(ip, port) {
     try {
         // Posielame IP a PORT ako argumenty v URL
-        const response = await fetch(`http://192.168.1.192:3000/ping?ip=${ip}&port=${port}`);
+        let response;
+        if (DebugAPIConnect === true) {
+            response = await fetch(`http://192.168.1.192:3000/ping?ip=${ip}&port=${port}`);
+        }else{
+            response = await fetch(`http://localhost:3000/ping?ip=${ip}&port=${port}`);
+        }
         const data = await response.json();
 
         const statusEl = document.getElementById('status-text');
