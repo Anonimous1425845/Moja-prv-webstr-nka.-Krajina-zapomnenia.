@@ -10,6 +10,7 @@
 <body>
 <div id="mc-status-card">
     <h3 id="server-name" style="margin-top: 0;">Načítavam...</h3>
+    <img id="server-icon" src="" alt="" style="width: 64px; height: 64px;">
     <p>Stav: <strong id="status-text">Načítavam...</strong></p>
     <p>Hráči: <span id="player-count">-</span></p>
     <p>Motd: <span id="server-motd">-</span></p>
@@ -19,5 +20,10 @@
 </div>
 <button onclick="window.location.href = './lobby.html'">Back</button>
 <script src="./ping.js"></script>
+<section>
+    <footer id="site-footer" style="height: 5vh;">
+        <p><marquee scrollamount="8" direction="left">API avibable at localhost:3000/ping. Usage localhost:3000/ping?ip=The ip&port=The port. This will return an json of ping via handshake.</p></marquee>
+    </footer>
+</section>
 </body>
 </html>

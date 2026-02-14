@@ -19,6 +19,7 @@ app.get('/ping', (req, res) => {
             res.json({
                 online: true,
                 server: serverIP,
+                icon: result.favicon || null,  // Vrátia null ak nemá ikonu
                 players: result.players.online,
                 max: result.players.max,
                 version: result.version.name,

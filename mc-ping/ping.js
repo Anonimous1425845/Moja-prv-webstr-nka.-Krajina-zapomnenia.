@@ -5,6 +5,16 @@ const TARGET_PORT = params.get('port') || 25565;
 
 // Toggle localhost api
 const DebugAPIConnect = false
+// Toggle localhost icoip
+const icoipdebug = true
+
+// Dont change
+let icoip;
+if (icoipdebug === true) {
+    icoip = "http://192.168.1.192/mc-ping/default.png"
+} else {
+    icoip = './default.png'
+}
 
 async function updateStatus(ip, port) {
     try {
@@ -28,11 +38,34 @@ async function updateStatus(ip, port) {
         nameEl.innerText = ip;
 
         if (data.online) {
+            // debuh lol
+            // console.log("Data z API:", data); // Pozri si v console, čo sa vracia
+            // console.log("Icon:", data.icon);
+            
+            // if (data.icon) {
+            //     document.getElementById('server-icon').src = `data:image/png;base64,${data.icon}`;
+            // } else {
+            //     console.log("Icon je null/undefined");
+            // }
+            //debug lol end
             statusEl.innerText = "ONLINE";
             statusEl.style.color = "green";
             playersEl.innerText = `${data.players} / ${data.max}`;
             versionEl.innerText = data.version;
             motdEL.innerText = data.motd;
+            // image Stuff
+            const iconEl = document.getElementById('server-icon');
+            iconEl.src = icoip // Default placeholder
+            // fallback ak obrázok neexistuje / zlyhá načítanie
+            iconEl.onerror = () => {
+                iconEl.src = icoip;
+            };
+            // nastavý default na actual icon (ak nijaký je)
+            if (data.icon && data.icon.length > 100) {
+                iconEl.src = data.icon;
+            }
+            playersEl.innerText = `${data.players} / ${data.max}`;
+            // end if image stuff
             if (data.playerList.length > 0) {
                 //zmazať starý zoznam
                 listEL.innerHTML = "";
