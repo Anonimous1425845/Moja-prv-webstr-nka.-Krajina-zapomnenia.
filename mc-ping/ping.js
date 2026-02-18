@@ -1,4 +1,4 @@
-// Tu si nastav IP a port, ktoré chceš sledovať
+// Tu sa nastavý IP a port, ktoré budú zobrazené
 const params = new URLSearchParams(window.location.search);
 const TARGET_IP = params.get('ip') || 'play.hypixel.net';
 const TARGET_PORT = params.get('port') || 25565;
@@ -6,11 +6,11 @@ const TARGET_PORT = params.get('port') || 25565;
 // Toggle localhost api
 const DebugAPIConnect = false
 // Toggle localhost icoip
-const icoipdebug = true
+const icoipdebug = false
 
 // Dont change
 let icoip;
-if (icoipdebug === true) {
+if (icoipdebug === false) {
     icoip = "http://192.168.1.192/mc-ping/default.png"
 } else {
     icoip = './default.png'
@@ -33,9 +33,21 @@ async function updateStatus(ip, port) {
         const versionEl = document.getElementById('server-version');
         const motdEL = document.getElementById('server-motd');
         const listEL = document.getElementById('player-list');
-
+        const iconEl = document.getElementById('server-icon');
         // Aktualizujeme názov servera v nadpise
         nameEl.innerText = ip;
+        
+        // image Stuff
+            iconEl.src = icoip // Default placeholder
+            // fallback ak obrázok neexistuje / zlyhá načítanie
+            iconEl.onerror = () => {
+                iconEl.src = icoip;
+            };
+            // nastavý default na actual icon (ak nijaký je)
+            if (data.icon && data.icon.length > 100) {
+                iconEl.src = data.icon;
+            }
+        // end of image stuff
 
         if (data.online) {
             // debuh lol
@@ -53,19 +65,7 @@ async function updateStatus(ip, port) {
             playersEl.innerText = `${data.players} / ${data.max}`;
             versionEl.innerText = data.version;
             motdEL.innerText = data.motd;
-            // image Stuff
-            const iconEl = document.getElementById('server-icon');
-            iconEl.src = icoip // Default placeholder
-            // fallback ak obrázok neexistuje / zlyhá načítanie
-            iconEl.onerror = () => {
-                iconEl.src = icoip;
-            };
-            // nastavý default na actual icon (ak nijaký je)
-            if (data.icon && data.icon.length > 100) {
-                iconEl.src = data.icon;
-            }
             playersEl.innerText = `${data.players} / ${data.max}`;
-            // end if image stuff
             if (data.playerList.length > 0) {
                 //zmazať starý zoznam
                 listEL.innerHTML = "";
@@ -98,3 +98,4 @@ updateStatus(TARGET_IP, TARGET_PORT);
 
 // Automatická aktualizácia každých 30 sekúnd
 setInterval(() => updateStatus(TARGET_IP, TARGET_PORT), 30000);
+
