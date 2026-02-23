@@ -24,5 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('load', () => {
-    showMessage("🐧");
+    msg("🐧");
 });

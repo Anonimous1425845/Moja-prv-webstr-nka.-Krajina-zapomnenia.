@@ -1,4 +1,4 @@
-function showMessage(text) {
+function msg(text) {
     const box = document.createElement("div");
     box.className = "msg";
     box.textContent = text;
