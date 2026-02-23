@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator</title>
+    <style>
+    body{
+        background-color: rgb(32, 32, 32);
+        color: rgb(190, 190, 190);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        gap: 12px;
+    }
+
+    input{
+        font-size: 22px;
+        padding: 14px 18px;
+        width: 320px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+    }
+
+    button{
+        font-size: 20px;
+        padding: 14px 24px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background: #ff0000;
+        color: white;
+    }
+
+    button:hover{
+        background: #cc0000;
+    }
+</style>
+</head>
+<body>
+    <input style="margin: 0.5vh;" id="text" type="text" placeholder="Input">
+    <button onclick="con()">FlashSearch</button>
+
+    <script>
+        window.addEventListener('keydown', (enter) => {
+            if (enter.key === 'Enter') {
+                con()
+            }
+        });
+        function con(){
+            const Go = document.getElementById('text').value;
+            window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(Go));
+            document.getElementById('text').value = '';
+        }
+    </script>
+</body>
+</html>
