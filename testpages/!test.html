@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,9 @@
 
 <script src="../js/msg.js"></script>
 <script>
-    document.getElementById("button").addEventListener("click", () => { const obsah = document.getElementById("msgInput").value; msg(obsah); });
+    document.getElementById("button").addEventListener("click", () => {
+        const obsah = document.getElementById("msgInput").value; msg(obsah);
+    });
 </script>
 </body>
 </html>
