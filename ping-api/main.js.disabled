@@ -1,0 +1,55 @@
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const app = express();
+const PORT = 3000;
+let IP;
+
+const localip = false
+
+app.use(cors());
+
+if(localip === true){
+    IP = 'localhost';
+}else{
+    IP = '192.168.1.192';
+}
+
+//API Better at pinging websites then apis but i dont want to trash it.
+
+app.get('/ping', async (req, res) => {
+    const prot = req.query.prot || req.query.protocol;
+    // Ak používateľ nezadá URL, nastavíme 'no'
+    const urlraw = req.query.url || 'no';
+
+    if (urlraw === 'no') {
+        // Ak je url 'no', vrátime odpoveď hneď a nepokračujeme ďalej
+        return res.json({ status: 'error', message: 'Nebola zadaná žiadna adresa' });
+    }
+
+    url = prot + '://' + urlraw;
+
+    try {
+        const start = Date.now();
+        // Skúsime kontaktovať stránku
+        await axios.get(url);
+        const duration = Date.now() - start;
+        
+        res.json({ 
+            status: 'online', 
+            resolvedURL: url, 
+            responseTime: `${duration}ms` 
+        });
+    } catch (error) {
+        // Ak stránka neexistuje alebo neodpovedá
+        res.status(500).json({ 
+            status: 'offline', 
+            url: url, 
+            error: error.message 
+        });
+    }
+});
+
+app.listen(PORT, IP, () => {
+    console.log(`Server beží na http://${IP}:${PORT}/ping`);
+});

@@ -32,9 +32,9 @@ app.get('/ping', (req, res) => {
         });
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('--- Minecraft Ping Status ---');
     console.log('Súbor: mc.js');
-    console.log('API beží na http://localhost:3000/ping');
+    console.log('API beží na http://localhost:3001/ping');
     console.log('Zavrieš ma pomocou CTRL+C');
 });

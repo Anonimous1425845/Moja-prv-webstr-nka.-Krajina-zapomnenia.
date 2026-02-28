@@ -21,9 +21,9 @@ async function updateStatus(ip, port) {
         // Posielame IP a PORT ako argumenty v URL
         let response;
         if (DebugAPIConnect === true) {
-            response = await fetch(`http://192.168.1.192:3000/ping?ip=${ip}&port=${port}`);
+            response = await fetch(`http://192.168.1.192:3001/ping?ip=${ip}&port=${port}`);
         }else{
-            response = await fetch(`http://localhost:3000/ping?ip=${ip}&port=${port}`);
+            response = await fetch(`http://localhost:3001/ping?ip=${ip}&port=${port}`);
         }
         const data = await response.json();
 
