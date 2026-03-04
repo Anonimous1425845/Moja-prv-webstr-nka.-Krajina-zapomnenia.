@@ -20,7 +20,7 @@ async function updateStatus(ip, port) {
     try {
         // Posielame IP a PORT ako argumenty v URL
         let response;
-        if (DebugAPIConnect === true) {
+        if (DebugAPIConnect === false) {
             response = await fetch(`http://192.168.1.192:3001/ping?ip=${ip}&port=${port}`);
         }else{
             response = await fetch(`http://localhost:3001/ping?ip=${ip}&port=${port}`);
@@ -97,5 +97,5 @@ async function updateStatus(ip, port) {
 updateStatus(TARGET_IP, TARGET_PORT);
 
 // Automatická aktualizácia každých 30 sekúnd
-setInterval(() => updateStatus(TARGET_IP, TARGET_PORT), 30000);
+setInterval(() => updateStatus(TARGET_IP, TARGET_PORT), 15000);
 

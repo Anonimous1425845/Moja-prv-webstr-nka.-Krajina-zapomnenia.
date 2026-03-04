@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/slider.css">
+</head>
+<body>
+    <section>
+        <h1>download your music</h1>
+        <div id="down-form">
+            <input type="text" name="in" id="in" placeholder="paste youtube link">
+            <button onclick="FINE()">Get</button>
+            <p>shud you get the file instead only stream?</p>
+            <div class="toggle-container">
+                    <input type="checkbox" id="myToggle" class="toggle-input">
+                    <label for="myToggle" class="toggle-label"></label>
+                    <!-- voliteľné: zobrazí ON/OFF -->
+                    <div class="toggle-state" id="toggleValue"></div>
+            </div>
+        </div>
+    </section>
+    <script src="../js/slider.js"></script>
+    <script src="../js/msg.js"></script>
+    <script src="lobby.js"></script>
+</body>
+</html>
