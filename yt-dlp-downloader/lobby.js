@@ -20,10 +20,11 @@ function FINE(){
     downloadMode = toggle ? !!toggle.checked : false;
     if(downloadMode){
         // Download file version
-        alert('Download mode — feature temporarily unavailable');
+        const goto = './download.html?url=' + url;
+        window.location.href = goto;
     } else {
         // Stream link find mode
         const goip = './FINE.html?url=' + url;
-        window.location.href = goip
+        window.location.href = goip;
     }
 }
