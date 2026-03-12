@@ -69,6 +69,8 @@ async function pinging(write,where,com,timeout){
     }
 }
 
+const serveradress = 'http://192.168.1.192:'
+
 pinging(ping,pingapi,'main')
-pinging(mcping,'http://192.168.1.192:3001/ping','mc api')
-pinging(yt_dlp,'http://192.168.1.192:3002/yt-dlp','yt-dlp api',)
+pinging(mcping,serveradress + '3001/ping','mc api')
+pinging(yt_dlp,serveradress + '3002/yt-dlp','yt-dlp api',)

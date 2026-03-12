@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
+exports.app = app;
 const PORT = 3000;
 let IP;
 
@@ -39,6 +40,6 @@ app.get('/ping',
             });
     }
 });
-app.listen(PORT, IP, () =>
+app.listen(PORT, () =>
     { console.log('Status API beží na porte', PORT);
 });

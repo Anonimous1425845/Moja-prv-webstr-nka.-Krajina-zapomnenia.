@@ -10,4 +10,4 @@ start node main.js
 cd ..
 cd ..
 echo OK
-php -S 192.168.1.191:80
+php -S 192.168.1.192:80

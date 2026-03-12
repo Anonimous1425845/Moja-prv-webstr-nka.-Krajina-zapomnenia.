@@ -1,7 +1,8 @@
 alert("Absolutley go check out Duklock's channel! https://www.youtube.com/@DuklockPlus");
 
+const iframe = document.getElementById('dusko-frame');
+
 document.addEventListener('DOMContentLoaded', () => {
-    const iframe = document.getElementById('dusko-frame');
     if (!iframe) return;
 
     const videos = [
@@ -26,3 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     msg("🐧");
 });
+
+function Custom(embed){
+    const sep = embed.includes('?') ? '&' : '?';
+    iframe.src = embed + sep + 'autoplay=1&mute=0&loop=1' + embed.split('/').pop().split('?')[0];
+}

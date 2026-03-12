@@ -28,3 +28,10 @@ function FINE(){
         window.location.href = goip;
     }
 }
+
+// Enter key tweak
+window.addEventListener('keydown', (enter) => {
+    if (enter.key === 'Enter') {
+        FINE();
+    }
+});
