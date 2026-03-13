@@ -1,17 +1,19 @@
 const parms = new URLSearchParams(window.location.search);
-const display = document.getElementById('stream')
-const rwurl = parms.get('url')
+const display = document.getElementById('stream');
+const rwurl = parms.get('url');
+const hostname = getHostname();
 
 const DebugAPIConnect = false
 
 async function go(url) {
     try{
-    let response;
-    if (DebugAPIConnect === false) {
-        response = await fetch(`http://192.168.1.192:3002/yt-dlp?url=${url}`);
-    }else{
-        response = await fetch(`http://localhost:3002/yt-dlp?url=${url}`);
-    }
+    const response = await fetch(`http://${hostname}:3002/yt-dlp?url=${url}`);
+//    let response;
+//    if (DebugAPIConnect === false) {
+//        response = await fetch(`http://192.168.1.192:3002/yt-dlp?url=${url}`);
+//    }else{
+//        response = await fetch(`http://localhost:3002/yt-dlp?url=${url}`);
+//    }
 
     const data = await response.json();
     const result = data['url'];

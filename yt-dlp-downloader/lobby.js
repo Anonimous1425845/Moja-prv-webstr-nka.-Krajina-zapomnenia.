@@ -1,3 +1,30 @@
+//api ping
+const hostip = getHostname();
+const pingapi = `http://${hostip}:3000/ping`;
+const ststustext = document.getElementById('status');
+
+async function Updatestatus(){
+    const to = ststustext;
+    try{
+        const where = hostip + ':3002/yt-dlp';
+        const goto = pingapi + '?url=http://' + where;
+
+        const response = await fetch(goto);
+        const data = await response.json();
+
+        if(data.status === 'online'){
+            to.innerText = 'yt-dlp Online :)'
+        }else{
+            to.innerText = 'yt-dlp Down :('
+        }
+    }catch (error){
+        console.log('pripojenie k node.js nebolo možné pre ping tool');
+        to.innerText = 'API down! Check F12'
+    }
+}
+
+Updatestatus()
+
 // Quick example integration using createSlider()
 // This runs after slider.js and lobby.js; it overrides FINE() with a safe implementation.
 if (typeof createSlider === 'function') {
