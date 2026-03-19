@@ -1,0 +1,17 @@
+{
+  "name": "mysql-db-to-json-api",
+  "version": "1.0.0",
+  "description": "mySQL database table read and return json",
+  "license": "UNLICENCED",
+  "author": "D0n",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.20.0"
+  }
+}
