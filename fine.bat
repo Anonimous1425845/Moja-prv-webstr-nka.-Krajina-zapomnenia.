@@ -9,5 +9,8 @@ cd api
 start node main.js
 cd ..
 cd ..
+cd mysql-db-to-json-api
+start node .
+cd ..
 echo OK
 php -S 192.168.1.192:80

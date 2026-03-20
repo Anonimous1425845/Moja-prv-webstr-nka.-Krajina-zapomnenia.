@@ -17,7 +17,8 @@ async function motd(whereid){
         const selected = data.data.find(item => item.id === randomid);
 
         if (selected){
-            goTowindow.textContent = selected.motd;
+            const showThis = `${selected.motd}   -${selected.creator}`
+            goTowindow.textContent = showThis;
             console.log('motd succesfull.');
         }else{
             goTowindow.textContent = 'motd failed at insert';
