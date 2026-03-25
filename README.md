@@ -7,3 +7,4 @@ https://ndrew.sk
 btw firt update bol text.html
 
 otázka pre ndrewa: čo je php?
+Old message uphere
