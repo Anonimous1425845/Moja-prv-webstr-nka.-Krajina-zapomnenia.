@@ -1,5 +1,7 @@
+import { getHostname } from '../js/lil/get-host.js';
+const GOTOHOST = getHostname();
+
 async function Get(){
-    const GOTOHOST = getHostname();
     try{
         const thejson = await fetch(`http://${GOTOHOST}:3003/select?t=text`);
 
@@ -47,3 +49,5 @@ async function Get(){
         console.warn('PLEASE Tell me i am stupid!');
     }
 }
+
+Get();

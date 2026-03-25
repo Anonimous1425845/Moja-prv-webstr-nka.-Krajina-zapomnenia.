@@ -1,9 +1,13 @@
+import { getHostname } from './lil/get-host.js';
 const Hostname = getHostname();
+
+// Simple dependencie test
 if(Hostname){
     console.log('motd requirments satisfied');
 } else {
     console.warn('motd requirments not satisfied!');
 }
+
 async function motd(whereid){
     const goTowindow = document.getElementById(`${whereid}`);
     try{

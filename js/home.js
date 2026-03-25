@@ -1,14 +1,38 @@
+// Video handler
+function NCSvideo(what){
+    const id = document.getElementById('NCS');
+
+    if(what === 'play'){
+        id.play();
+    }else if(what === 'pause'){
+        id.pause();
+    }else if(what === 'stop'){
+        id.pause();
+        id.currentTime = 0;
+        id.load();
+    }else if(what === 'download'){
+        const down = document.createElement("a");
+        down.href = '../assets/videos/sg/Mo-Falk-&-MADZI---Lets-Go-NCS-Remade.mp4';
+        down.download = 'Mo Falk & MADZI - Lets Go [NCS Remade].mp4'
+        down.click();
+    }else{
+        console.warn('did not get value so noting happend!');
+    }
+}
+
 // slider functions - MUST be defined BEFORE initialization
 function functionForOn() {
     console.log('[functionForOn] executing...');
     document.body.style.backgroundColor = 'rgb(190, 190, 190)';
-    document.body.style.color = 'rgb(32, 32, 32)';
+    document.body.style.color = 'rgb(99, 99, 99)';
+    document.getElementById('NCS').poster = "./assets/pictures/2021-dodge-charger.jpg";
     console.log('[functionForOn] styles applied');
 }
 function functionForOff() {
     console.log('[functionForOff] executing...');
     document.body.style.backgroundColor = 'rgb(32, 32, 32)';
     document.body.style.color = 'rgb(190, 190, 190)';
+    document.getElementById('NCS').poster = "./assets/pictures/2021-dodge-challenger.jpg";
     console.log('[functionForOff] styles applied');
 }
 
@@ -38,7 +62,8 @@ if(typeof createSlider === 'function'){
         window.functionForOn = functionForOn;
         window.functionForOff = functionForOff;
     });
-}
+};
+
 
 //api ping
 const pingapi = 'http://192.168.1.192:3000/ping';
