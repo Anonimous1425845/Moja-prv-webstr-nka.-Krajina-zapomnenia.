@@ -1,0 +1,60 @@
+@font-face {
+    font-family: "Mojangles";
+    src: url('../assets/fonts/minecraftsevenv2.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+* {
+    font-family: "Mojangles", sans-serif;
+}
+body {
+    background-color: rgb(32, 32, 32);
+    color: rgb(190, 190, 190);
+}
+
+.link {
+    text-decoration: none ;
+    cursor: pointer ;
+    color:rgb(40, 155, 190);
+}
+
+.link:hover {
+    color:rgb(78, 200, 240)!important;
+    text-decoration: underline !important;
+}
+
+.dlink {
+    text-decoration: none ;
+    cursor: pointer ;
+    color:rgb(20, 118, 60);
+}
+
+.dlink:hover {
+    color:rgb(50, 200, 100)!important;
+    text-decoration: underline !important;
+}
+
+/* top message box the msg.js needs this! */
+.msg {
+    position: fixed;
+    top: 20px; /* medzera od vrchu */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    z-index: 9999; /* aby to bolo nad všetkým */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#player {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
