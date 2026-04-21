@@ -2,7 +2,7 @@
   "name": "mc-ping",
   "version": "1.0.0",
   "description": "minecraft-ping-package",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "D0n",
   "type": "commonjs",
   "main": "mc.js",

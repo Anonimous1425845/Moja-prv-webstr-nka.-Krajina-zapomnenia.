@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>My SPA Website</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        a {
+            padding: 12px 20px;
+            margin: 5px;
+            display: inline-block;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .page {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1></h1>
+
+    <a href="#home">Main Page</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+    <a href="#stock">Stock</a>
+
+    <div id="home" class="page">
+        <h2>Main Page</h2>
+        <p>Vitaj na NeviemVimislietMenoPreObchod™.</p>
+        <p>Naša organizacia bola urobena v 2011 našim tvorcom Jozefom Štefanikom.</p>
+        <p>Šli sme "bankrupt" lebo sme boli neuprimní s našimi zakaznikmy takže sme sa zmenily.</p>
+    </div>
+
+    <div id="about" class="page">
+        <h2>About Us</h2>
+        <p>Sme uprimna organizacia takže pravda je že tento obchod je umplny opak non-profit organizacie. </p>
+        <p>Takže padaj nakupovať!</p>
+    </div>
+
+    <div id="contact" class="page">
+        <h2>Contact</h2>
+        <p>Email: NeviemVimislietMenoPreObchod-noresponse@email.com</p>
+        <p>Telefonné Číslo: 0944 753 955</p>
+    </div>
+
+    <div id="stock" class="page">
+        <h2>Stock</h2>
+        <p>Velmi dôležitý text.txt</p>
+        <p>Pripomienka: Aďo ako mam urobiť delivery system kde vipočita cenu podla momentalnej ceny paliva.</p>
+    </div>
+
+    <script>
+        function showPageFromHash() {
+            let hash = window.location.hash.substring(1);
+
+            if (!hash) hash = "home";
+
+            let pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            let activePage = document.getElementById(hash);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+        }
+
+        window.addEventListener("hashchange", showPageFromHash);
+
+        window.addEventListener("load", showPageFromHash);
+    </script>
+</body>
+</html>

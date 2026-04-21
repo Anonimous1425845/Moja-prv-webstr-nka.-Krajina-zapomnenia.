@@ -1,7 +1,7 @@
 const parms = new URLSearchParams(window.location.search);
 const display = document.getElementById('stream');
 const rwurl = parms.get('url');
-const hostname = getHostname();
+const hostname = window.location.hostname;
 
 const DebugAPIConnect = false
 

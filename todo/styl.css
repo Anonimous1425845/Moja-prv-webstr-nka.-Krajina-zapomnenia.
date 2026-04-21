@@ -1,12 +1,35 @@
-/*
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    object-fit: cover;
-*/
+#domi{
+    box-shadow: 1vh #3d3b3b;
+    background-image: url(../assets/pictures/2021-dodge-challenger-mobile.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#eli{
+    position: relative; /* Dôležité pre napoziciovanie vrstvy pod ním */
+    box-shadow: 1vh #dbc476;
+    overflow: hidden; /* Aby pozadie nepretieklo von */
+}
+#eli::before {
+  content: "";
+  background-image: url(../assets/pictures/Eli&eli.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Tu nastavuješ priehľadnosť */
+  opacity: 0.65; 
+  
+  /* Roztiahnutie na celú plochu rodiča */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  /* Posun vrstvy pod text */
+  z-index: -1; 
+}
 .window{
     border: 2px solid rgba(51, 51, 51, 0.5);
     padding: 15px;

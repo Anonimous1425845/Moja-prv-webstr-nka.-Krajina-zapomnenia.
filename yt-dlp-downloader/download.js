@@ -1,3 +1,4 @@
+function getHostname(){return window.location.host;}
 function getFilenameFromDisposition(disposition) {
     if (!disposition) return null;
 
@@ -15,16 +16,21 @@ function getFilenameFromDisposition(disposition) {
 async function Start() {
 //    const api = 'http://192.168.1.192:3002';
     const host = getHostname();
-    const api = host + ':3002';
+    const api = `http://${host}:3002`;
     const parms = new URLSearchParams(window.location.search);
     const videoUrl = parms.get('url');
     const videoType = parms.get('video');
+
+    console.log(host, api, parms, videoUrl, videoType);
     
     const url = videoType
         ? `${api}/yt-dlp/download?video=${videoType}&url=${encodeURIComponent(videoUrl)}`
         : `${api}/yt-dlp/download?url=${encodeURIComponent(videoUrl)}`;
 
     const response = await fetch(url);
+
+    console.log(url);
+    console.log(response);
     
     if (!response.ok) {
         const err = await response.json().catch(() => null);

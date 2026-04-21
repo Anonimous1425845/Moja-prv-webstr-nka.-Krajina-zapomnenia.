@@ -1,28 +1,30 @@
-let h;
-let f;
+let h = 0;
 
 // debug
-const deb = false
+const deb = true
 
-function GO(trpo,ff) {
+function GO(trpo,defaulte,isembed) {
     const urlo = document.getElementById(trpo);
     if(!urlo.value){
-        if(h === 1){
-            f = 'enter link here!'
-            h = 0;
+        if(h === 0){
+            urlo.placeholder = 'enter link here!';
+            h = 1;
             if(deb === true){
                 console.log('1');
             }
         } else {
-            f = ff
-            h = 1;
+            urlo.placeholder = defaulte;
+            h = 0;
             if(deb === true){
                 console.log('0');
             }
         }
-        urlo.placeholder = f;
     } else {
-        const goto = './play/?v=' + urlo.value;
+        let goto = './play/?';
+        if(isembed === true || isembed === 'true'){
+            goto = goto + 'em=is&'
+        }
+        goto = goto + 'v=' + encodeURIComponent(urlo.value);
         window.location.href = goto;
     }
 }

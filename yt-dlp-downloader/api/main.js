@@ -79,8 +79,12 @@ app.get('/yt-dlp/download', async (req, res) => {
     console.log('download: new request.');
     const fraw = req.query.video;
     const videoUrl = req.query.url;
+    const recodetipe = req.query.recode;
     const f = getF(fraw);
 
+    if(!recodetipe){
+        console.log('download: video request has been f_ked up!');
+    }
     if(!f){
         console.log('download: video request has been f_ked up!');
         return res.status(400).json({ success: false, error: "Parameter 'video' must be 0 or 1 or don't define it!" });

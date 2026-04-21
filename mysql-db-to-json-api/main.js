@@ -17,7 +17,7 @@ app.get('/',
         })
         console.log('Ping Handler: Ping Accured!')
     }
-)
+);
 
 app.get('/select',
     async (req, res) => {
@@ -49,7 +49,7 @@ app.get('/select',
             console.log('EXIT CODE: 1');
         }
     }
-)
+);
 
 app.listen(PORT, () =>
     { console.log(`Status: API beží na porte: ${PORT}!`);

@@ -14,13 +14,19 @@
     <section>
         <p>Podporované URLs: Yt Embed</p>
         <input id="InputURL24" type="text" placeholder="Embed">
-        <button onclick="GO('InputURL24','Embed')">ďalej</button>
+        <button onclick="GO('InputURL24','Embed','true')">ďalej</button>
+    </section>
+    <p>------------------------------------------</p>
+    <section>
+        <p>Priame zdroje URLs ako tie z <a class="link" href="../yt-dlp-downloader/">yt-dlp-downloader</a> stream findu</p>
+        <input id="InputURL64" type="text" placeholder="URL">
+        <button onclick="GO('InputURL64','URL')">ďalej</button>
     </section>
     <p>------------------------------------------</p>
     <section>
         <p><a class='link' href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md">Podporované stránky(môže fungovať aj na iných)</a></p>
         <input id="InputURL128" type="text" placeholder="Hociaký podporovaný link">
-        <button onclick="alert('not finnished!')">ďalej</button>
+        <button onclick="alert('not finnished!'); alert('For more info go to /yt-window-player/ytdettector-info')">ďalej</button>
     </section>
     <script src="./script.js"></script>
 </body>

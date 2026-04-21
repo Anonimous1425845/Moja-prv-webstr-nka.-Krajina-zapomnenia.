@@ -13,10 +13,11 @@ async function tododata(whereid,who){
 
         data.data.forEach(item => {
             const block = document.createElement("div");
-            const ggtime = item.timeadd.replace('T', ' ').replace('Z', ' ');
+            const ggtime = item.timeadd.replace('-', '.').replace('-', '.').replace('T', ' ').replace('Z', ' ');
 
             block.innerHTML = `
-                <p>${item.id}: ${item.todo} | pridané ${ggtime}</p>
+                <p>${item.id}: ${item.todo}</p>
+                <p>Pridané ${ggtime}</p>
                 <p>--------------------</p>
             `;
 

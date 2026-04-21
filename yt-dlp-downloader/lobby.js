@@ -1,5 +1,5 @@
 //api ping
-const hostip = getHostname();
+const hostip = window.location.hostname;
 const pingapi = `http://${hostip}:3000/ping`;
 const ststustext = document.getElementById('status');
 
@@ -32,6 +32,11 @@ if (typeof createSlider === 'function') {
         showStateText: true,
         on: () => console.log('Slider: ON (download)'),
         off: () => console.log('Slider: OFF (stream)')
+    });
+    createSlider('myToggle-video', {
+        showStateText: true,
+        on: () => console.log('video slider on'),
+        off: () => console.log('video slider off')
     });
 }
 

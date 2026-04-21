@@ -183,5 +183,5 @@ async function updateStatus(ip, port) {
 // Spustíme s našimi premennými
 updateStatus(TARGET_IP, TARGET_PORT);
 
-// Automatická aktualizácia každých 30 sekúnd
+// Automatická aktualizácia každých 15 sekúnd
 setInterval(() => updateStatus(TARGET_IP, TARGET_PORT), 15000);

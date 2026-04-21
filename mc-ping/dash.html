@@ -20,9 +20,22 @@
 </div>
 <button onclick="window.location.href = './lobby.html'">Back</button>
 <script src="./ping.js"></script>
+<script>
+    // Set title to include server ip via name
+    const ip = new URLSearchParams(window.location.search).get('ip');
+    document.title = document.title + ' - ' + ip;
+</script>
 <section>
     <footer id="site-footer" style="height: 5vh;">
-        <p><marquee scrollamount="8" direction="left">API avibable at localhost:3000/ping. Usage localhost:3000/ping?ip=The ip&port=The port. This will return an json of ping via handshake.</p></marquee>
+        <p><marquee scrollamount="8" direction="left">API avibable at <span id="hostipheree"></span>:3000/ping. Usage <span id="hostiphereee"></span>:3000/ping?ip=The ip&port=The port. This will return an json of ping via handshake.</p></marquee>
+        <script>
+        // modify bottom text to contain valid info about open api
+        GETMYF_IN_HOSTS('hostipheree');
+        GETMYF_IN_HOSTS('hostiphereee');
+        function GETMYF_IN_HOSTS(helloguy){
+            document.getElementById(helloguy).innerText = window.location.hostname;
+        }
+        </script>
     </footer>
 </section>
 </body>
