@@ -1,5 +1,6 @@
 const dbcreadentials = require('./conect-conf');
 const formatedDate = require('../js/lil/date');
+const configuredpass = require('./Password');
 const mysql = require('mysql2/promise');
 const express = require('express');
 const cors = require('cors');
@@ -50,6 +51,53 @@ app.get('/select',
         }
     }
 );
+
+app.get('/insert',
+    // Use like this api/insert?t='table'&colums='columtofill,secondone'&values='values representing your colums selection'
+    // YOU NEWER NEED TO USE '' IN REQUEST UNLESS VALUES ONE! UNDERSTAND?!
+    async (req, res) => {
+        const password = req.query.pass;
+        const TABLE = req.query.t;
+        const COLUMS = req.query.colums;
+        const VALUES = req.query.values;
+        const Time = formatedDate();
+        if(password === configuredpass){
+            const connection = await mysql.createConnection(dbcreadentials);
+            try{
+                if(!TABLE){return};
+                if(!COLUMS){return};
+                if(!VALUES){return};
+                console.log('Connector: Got 2 Database!');
+
+                await connection.execute(`INSERT INTO ${TABLE} (${COLUMS}) VALUES (${VALUES})`);
+                console.log(`WRITER: Wrote new data to table: ${TABLE}, colum: ${COLUMS}, and wrote values: ${VALUES}!`);
+
+                res.json({
+                succes: true,
+                CODE: 200
+                });
+                console.log('STAT Data Send via json!');
+                console.log('SUCCES!');
+                console.log('EXIT Code 0');
+            } catch(error) {
+                res.json({
+                    succes: false,
+                    message: 'Internal Server ERROR',
+                    CODE: 500
+                });
+                console.log('Yup i failed');
+            } finally {
+                await connection.end();
+            }
+        } else {
+            res.json({
+                succes: false,
+                message: 'Ey You need to enter a key!!!',
+                CODE: 401
+            });
+        }
+    }
+)
 
 app.listen(PORT, () =>
     { console.log(`Status: API beží na porte: ${PORT}!`);
