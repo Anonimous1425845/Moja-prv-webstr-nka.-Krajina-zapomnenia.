@@ -1,4 +1,4 @@
-const dbcreadentials = require('./conect-conf');
+const dbcreadentials = JSON.parse(require('fs').readFileSync('./connect-conf.json', 'utf8'));
 const formatedDate = require('../js/lil/date');
 const configuredpass = require('./Password');
 const mysql = require('mysql2/promise');
