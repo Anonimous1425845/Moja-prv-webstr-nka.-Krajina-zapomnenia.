@@ -20,5 +20,5 @@ cd mysql-db-to-json-api
 start node .
 cd ..
 echo --------------------------------------------------
-start php -S 127.0.0.1:8080
+start php -S 0.0.0.0:8080
 echo OK
