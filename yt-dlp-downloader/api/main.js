@@ -13,7 +13,7 @@ app.use(cors());
 
 // shared code
 // start processing
-
+// OLD (Legacy)
 const getF = (fraw) => {
     // 0. Spracovanie f flagu
     // ak je audio
@@ -151,6 +151,7 @@ app.get('/yt-dlp/old/download', async (req, res) => {
     }
 });
 
+// NEW
 // Endpoint zavoláš takto: http://localhost:3002/yt-dlp?video=1or0&url=SEM_DAJ_YOUTUBE_LINK
 app.get('/yt-dlp', async (req, res) => {
     const fraw = req.query.video;
