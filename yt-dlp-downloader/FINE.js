@@ -1,13 +1,17 @@
 const parms = new URLSearchParams(window.location.search);
 const display = document.getElementById('stream');
 const rwurl = parms.get('url');
+const legac = parms.get('legacy');
 const hostname = window.location.hostname;
 
 const DebugAPIConnect = false
 
-async function go(url) {
+async function go(url,lega) {
     try{
-    const response = await fetch(`http://${hostname}:3002/yt-dlp?url=${url}`);
+        let rororo;
+        if(lega !== undefined){rororo = `http://${hostname}:3002/yt-dlp/old?url=${url}`} else {
+        rororo = `http://${hostname}:3002/yt-dlp?url=${url}`}
+        const response = await fetch(rororo);
 //    let response;
 //    if (DebugAPIConnect === false) {
 //        response = await fetch(`http://192.168.1.192:3002/yt-dlp?url=${url}`);
@@ -23,9 +27,9 @@ async function go(url) {
     }catch(error){
         display.textContent = 'API Error'
     }
-}
+};
 
-go(rwurl)
+go(rwurl,legac);
 
 // copies the current text of the #stream element to the clipboard
 // call from a button: <button onclick="copyStream()">Copy</button>
@@ -59,4 +63,4 @@ function copyLink() {
         }
         document.body.removeChild(ta);
     }
-}
+};

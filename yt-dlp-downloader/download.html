@@ -13,8 +13,9 @@
     <script src="../js/msg.js"></script>
     <script src="./download.js"></script>
     <script>
+        const legacy = new URLSearchParams(window.location.search).get('legacy');
         window.onload = () => {
-        Start();
+        Start(legacy);
     };
     </script>
 </body>

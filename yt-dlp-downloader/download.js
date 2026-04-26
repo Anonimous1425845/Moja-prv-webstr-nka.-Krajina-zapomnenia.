@@ -13,8 +13,9 @@ function getFilenameFromDisposition(disposition) {
     return null;
 }
 
-async function Start() {
+async function Start(lega) {
 //    const api = 'http://192.168.1.192:3002';
+    let videoType;
     const host = getHostname();
     const api = `http://${host}:3002`;
     const parms = new URLSearchParams(window.location.search);
@@ -23,10 +24,17 @@ async function Start() {
 
     console.log(host, api, parms, videoUrl, videoType);
     
-    const url = videoType
+    if(lega !== undefined){
+        url = videoType
+        ? `${api}/yt-dlp/old/download?video=${videoType}&url=${encodeURIComponent(videoUrl)}`
+        : `${api}/yt-dlp/old/download?url=${encodeURIComponent(videoUrl)}`;
+    } else {
+        url = videoType
         ? `${api}/yt-dlp/download?video=${videoType}&url=${encodeURIComponent(videoUrl)}`
         : `${api}/yt-dlp/download?url=${encodeURIComponent(videoUrl)}`;
+    }
 
+    
     const response = await fetch(url);
 
     console.log(url);

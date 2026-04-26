@@ -43,20 +43,33 @@ if (typeof createSlider === 'function') {
 let downloadMode;
 
 // Simple FINE() implementation (overrides any broken one in lobby.js)
-function FINE(){
+function FINE(Legacy){
     const input = document.getElementById('in');
+    const legacyinput = document.getElementById('normalin');
     const toggle = document.getElementById('myToggle');
-    if(!input){ msg('Chýba input #in'); return; }
+    if(!Legacy){if(!input){ msg('Chýba input #in'); return; }}else{
+    if(!legacyinput){ msg('Chíba input #normalin/legacy'); return; }}
     const url = input.value.trim();
-    if(!url){ msg('Vložte YouTube odkaz.'); return; }
+    const legacyurl = legacyinput.value.trim();
+    if(!Legacy){if(!url){ msg('Vložte YouTube odkaz.'); return; }}else{
+    if(!legacyurl){ msg('Vložťe odkaz Podporovaný yt-dlp'); return; }}
     downloadMode = toggle ? !!toggle.checked : false;
+    let goto = undefined;
     if(downloadMode){
         // Download file version
-        const goto = './download.html?url=' + url;
+        if(Legacy !== undefined){
+            goto = './download.html?url=' + url;
+        } else {
+            goto = './download.html?url=' + url + '&legacy=true';
+        }
         window.location.href = goto;
     } else {
         // Stream link find mode
-        const goip = './FINE.html?url=' + url;
+        if(Legacy !== undefined){
+            goto = './FINE.html?url=' + url;
+        } else {
+            goto = './FINE.html?url=' + url + '&legacy=true';
+        }
         window.location.href = goip;
     }
 }
