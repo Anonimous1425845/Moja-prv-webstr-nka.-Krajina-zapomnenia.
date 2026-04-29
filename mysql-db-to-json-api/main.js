@@ -4,6 +4,7 @@ const configuredpass = require('./Password');
 const mysql = require('mysql2/promise');
 const express = require('express');
 const cors = require('cors');
+const pass = require('./Password');
 const app = express();
 exports.app = app;
 const PORT = 3003;
@@ -56,12 +57,14 @@ app.get('/insert',
     // Use like this api/insert?t='table'&colums='columtofill,secondone'&values='values representing your colums selection'
     // YOU NEWER NEED TO USE '' IN REQUEST UNLESS VALUES ONE! UNDERSTAND?!
     async (req, res) => {
+        console.log('New Request!');
+        const passhead = req.headers['pass'];
         const password = req.query.pass;
         const TABLE = req.query.t;
         const COLUMS = req.query.colums;
         const VALUES = req.query.values;
         const Time = formatedDate();
-        if(password === configuredpass){
+        if(password === configuredpass || passhead === configuredpass){
             const connection = await mysql.createConnection(dbcreadentials);
             try{
                 if(!TABLE){return};
@@ -95,6 +98,8 @@ app.get('/insert',
                 message: 'Ey You need to enter a key!!!',
                 CODE: 401
             });
+            console.log('Hey you got a alicense for that?');
+            console.log('You newer take me alive "trumpet sound"');
         }
     }
 )

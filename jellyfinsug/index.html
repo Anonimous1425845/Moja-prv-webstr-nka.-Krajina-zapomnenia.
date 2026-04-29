@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Čo pridať?</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        *{
+            margin: 0;
+            box-shadow: none;
+            outline: none;
+        }
+        *:focus{
+            box-shadow: none;
+            outline: none;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /*  vertical center  */
+            align-items: center;     /* horizontal center */
+        }
+        #input1{
+            width: 58vh;
+            margin-bottom: 4vh;
+            background-color: rgb(54, 54, 54);
+            color: rgb(190, 190, 190);
+            border: 0.4vh solid rgba(60, 82, 95, 0.7);
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 4px;
+            caret-color: rgb(40, 94, 126);
+
+            transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
+        }
+        #input1:hover{background-color: rgba(70, 70, 70, 0.7); box-shadow: 0.55vh 0.55vh rgba(40, 94, 126, 0.75);}
+        #input1:focus{border: 0.45vh solid rgba(40, 94, 126, 0.75); box-shadow: 0.75vh 0.75vh rgb(40, 94, 126);}
+        #input2{
+            width: 78vh;
+            height: 30vh;
+            margin-bottom: 4vh;
+            background-color: rgb(54, 54, 54);
+            color: rgb(190, 190, 190);
+            border: 0.4vh solid rgba(61, 82, 95, 0.7);
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 4px;
+            overflow: hidden;
+            caret-color: rgb(40, 94, 126);
+
+            transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
+        }
+        #input2:hover{background-color: rgba(70, 70, 70, 0.7); box-shadow: 0.55vh 0.55vh rgba(40, 94, 126, 0.75);}
+        #input2:focus{border: 0.45vh solid rgba(40, 94, 126, 0.75); box-shadow: 0.75vh 0.75vh rgb(40, 94, 126);}
+        button{
+            padding: 5px;
+            font-size: 16px;
+            background-color: rgb(54, 54, 54);
+            color: rgb(190, 190, 190);
+            border: 0.5vh solid rgba(61, 82, 95, 0.7);
+            cursor: pointer;
+            border-radius: 1vh;
+
+            transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
+        }
+        button:hover{background-color: rgba(70, 70, 70, 0.7); border: 0.5vh solid rgb(40, 94, 126); box-shadow: 0.75vh 0.75vh rgba(40, 94, 126, 0.75);}
+    </style>
+</head>
+<body>
+    <input type="text" name="key" id="input1" placeholder="api key">
+    <textarea name="in" id="input2" placeholder="meno alebo link"></textarea>
+    <button onclick="FINE();">Poslať</button>
+    <p id="successhow"></p>
+    <script>
+        async function FINE() {
+            const key = document.getElementById('input1').value;
+            const input = document.getElementById('input2').value;
+            const successhow = document.getElementById('successhow');
+            if(!input){ alert('FAILED AT LINE 81 HTML');}
+            const host = window.location.hostname;
+            const inputt = `'${input}'`;
+            const send = `http://${host}:3003/insert?t=jellysug&colums=sugesstions&values=${encodeURIComponent(inputt)}`
+            try {
+                const result = await fetch(send, {
+                    headers: {
+                        'pass': key
+                    }
+                });
+                const resultjson = await result.json();
+                if(resultjson.succes){
+                    successhow.innerText = 'Úspešne poslané!';
+                } else {
+                    successhow.innerText = 'Nastala chiba!';
+                }
+            } catch(error) { alert('api error'); }
+        }
+    </script>
+</body>
+</html>
