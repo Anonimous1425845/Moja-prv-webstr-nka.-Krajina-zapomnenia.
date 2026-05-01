@@ -44,20 +44,45 @@ let downloadMode;
 
 // Simple FINE() implementation (overrides any broken one in lobby.js)
 function FINE(Legacy){
-    const input = document.getElementById('in');
-    const legacyinput = document.getElementById('normalin');
+    let input;
+    let legacyinput
+    if(Legacy){
+        legacyinput = document.getElementById('innormal');
+    } else {
+        input = document.getElementById('in');
+    }
     const toggle = document.getElementById('myToggle');
-    if(!Legacy){if(!input){ msg('Chýba input #in'); return; }}else{
-    if(!legacyinput){ msg('Chíba input #normalin/legacy'); return; }}
-    const url = input.value.trim();
-    const legacyurl = legacyinput.value.trim();
-    if(!Legacy){if(!url){ msg('Vložte YouTube odkaz.'); return; }}else{
-    if(!legacyurl){ msg('Vložťe odkaz Podporovaný yt-dlp'); return; }}
+    if(!Legacy){
+        if(!input){
+            msg('Chýba input #in'); return;
+        }
+    } else {
+        if(!legacyinput){
+            msg('Chíba input #normalin/legacy'); return;
+        }
+    }
+    let url;
+    let legacyurl;
+    if(!Legacy){
+        url = input.value;
+    }
+    if(Legacy){
+        legacyurl = legacyinput.value;
+    }
+    if(!Legacy){
+        if(!url){
+            msg('Vložte YouTube odkaz.'); return;
+        }
+    } else {
+        if(!legacyurl){
+            msg('Vložťe odkaz Podporovaný yt-dlp'); return;
+        }
+    }
     downloadMode = toggle ? !!toggle.checked : false;
-    let goto = undefined;
+    let goto;
     if(downloadMode){
         // Download file version
-        if(Legacy !== undefined){
+        if(!Legacy){
             goto = './download.html?url=' + url;
         } else {
             goto = './download.html?url=' + url + '&legacy=true';
@@ -65,12 +90,12 @@ function FINE(Legacy){
         window.location.href = goto;
     } else {
         // Stream link find mode
-        if(Legacy !== undefined){
+        if(Legacy === undefined){
             goto = './FINE.html?url=' + url;
         } else {
             goto = './FINE.html?url=' + url + '&legacy=true';
         }
-        window.location.href = goip;
+        window.location.href = goto;
     }
 }
 
@@ -78,5 +103,6 @@ function FINE(Legacy){
 window.addEventListener('keydown', (enter) => {
     if (enter.key === 'Enter') {
         FINE();
+        FINE('normal');
     }
 });
