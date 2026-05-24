@@ -6,7 +6,7 @@ const stockEL = document.getElementById('stock');
 
 // Getting Data 
 async function FINE() {
-    const dataraw = await fetch("simulated.json");
+    const dataraw = await fetch("http://localhost:3003/select?t=sudoShop");
     const data = await dataraw.json();
     console.log(dataraw);
     console.log(data);
@@ -16,6 +16,7 @@ async function FINE() {
         cont.innerHTML = `
             <div class="imageCont"><img src="${data.imageUrl}" alt=""></div>
             <div class="textCont"><span>${data.textContent}</span></div>
+            <div>Avaiable: <span>${data.quantity}</span></div>
         `;
         stockEL.appendChild(cont);
     });

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kocka</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/ezcenter.css">
+    <style>
+        *{
+            font-size: 8vh !important;
+        }
+    </style>
+</head>
+<body>
+    <p id="out">0</p>
+    <button onclick="Roll()">Roll</button>
+    <script>
+        const outEL = document.getElementById('out');
+
+        function Roll() {
+            const numero = Math.floor(Math.random() * 6) + 1;
+            outEL.innerText = numero;
+        }
+    </script>
+</body>
+</html>

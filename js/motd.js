@@ -9,7 +9,7 @@ if(Hostname){
 }
 
 async function motd(whereid){
-    const goTowindow = document.getElementById(`${whereid}`);
+    const goTowindow = document.getElementById(whereid);
     try{
         const thejson = await fetch(`http://${Hostname}:3003/select?t=motd`);
         const data = await thejson.json();

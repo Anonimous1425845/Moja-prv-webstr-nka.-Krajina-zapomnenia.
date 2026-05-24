@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOOM Server Panel</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="./panel.css">
+</head>
+<header>
+    <div class="okno">
+        <p>DOOM MC Server info panel</p>
+    </div>
+</header>
+<body>
+    <div class="okno">
+        <p>STATUS: <span id="stat"></span></p>
+    </div>
+    <div id="world" class="okno">
+        <h3>World</h3>
+        <p>Time: <span id="worldtime"></span></p>
+        <p>Počasie: <span id="pocasi"></span></p>
+    </div>
+    <div id="DIM-1" class="okno">
+        <h3>Nether</h3>
+        <p>Time: <span id="nethertime"></span></p>
+    </div>
+    <div id="DIM1" class="okno">
+        <h3>End</h3>
+        <p>Time: <span id="endtime"></span></p>
+    </div>
+    <button class="okno" style="color: rgb(190, 190, 190);" onclick="window.location.href = '../';">Hlavné menu</button>
+</body>
+<script src="./panel.js"></script>
+</html>

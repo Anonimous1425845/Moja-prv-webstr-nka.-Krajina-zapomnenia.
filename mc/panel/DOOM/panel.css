@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+}
+.okno{
+    width: 58%;
+    margin: 1vh;
+    border: 0.4vh solid;
+    background-color: rgb(54, 54, 54);
+    padding: 1vh;
+    font-size: 3vh;
+    border-radius: 4px;
+}
+#world{
+    border-color: rgba(16, 96, 116, 0.7);
+}
+#DIM-1{
+    border-color: rgba(102, 36, 10, 0.7);
+}
+#DIM1{
+    border-color: rgba(58, 16, 124, 0.7);
+}
