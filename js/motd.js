@@ -15,7 +15,7 @@ async function motd(whereid){
         const data = await thejson.json();
 
         const idread = data.data.map(item => item.id);
-        console.log('What IDs are valid: ',idread);
+        console.log('What IDs are valid: ', idread);
 
         const randomid = idread[Math.floor(Math.random() * idread.length)];
         const selected = data.data.find(item => item.id === randomid);
