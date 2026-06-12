@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score 1v1</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/ezcenter.css">
+    <style>
+        *{
+            font-size: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Mami</p>
+        <input type="number" id="g_1" placeholder="1"><button onclick="
+            g_1EL.value = parseInt(g_1EL.value) + 1;
+        ">Pripočítať</button>
+    </div>
+    <p>--------------------------------------------------------------------------------</p>
+    <div>
+        <p>Domi</p>
+        <input type="number" id="g_2" placeholder="2"><button onclick="
+            g_2EL.value = parseInt(g_2EL.value) + 1;
+        ">Pripočítať</button>
+    </div>
+    <p>--------------------------------------------------------------------------------</p>
+    <div>
+        <p id="outerworld"></p><button onclick="outER.innerText = g_1EL.value + ':' + g_2EL.value">Prepočítaj</button>
+    </div>
+    <script>
+        const g_1EL = document.getElementById('g_1');
+        const g_2EL = document.getElementById('g_2');
+        const outER = document.getElementById('outerworld');
+
+        g_1EL.value = 0;
+        g_2EL.value = 0;
+        outER.innerText = 'nill';
+    </script>
+</body>
+</html>

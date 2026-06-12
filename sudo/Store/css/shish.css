@@ -19,6 +19,7 @@ header a,p{
     padding: 1vh;
     border: 2px solid rgba(189, 16, 16, 0.8);
     border-radius: 2vh;
+    transition: border 0.1s;
 }
 header a:hover,p:hover{
     cursor: pointer;

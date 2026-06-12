@@ -70,6 +70,7 @@ const pingapi = 'http://192.168.1.192:3000/ping';
 const ping = document.getElementById('ping-stat');
 const mcping = document.getElementById('mcping-stat');
 const yt_dlp = document.getElementById('yt-dlp-stat');
+const mysql_ping = document.getElementById('mysql-stat');
 
 async function pinging(write,where,com,timeout){
     const to = write
@@ -94,8 +95,9 @@ async function pinging(write,where,com,timeout){
     }
 }
 
-const serveradress = 'http://192.168.1.192:'
+const serveradress = 'http://' + window.location.hostname;
 
-pinging(ping,pingapi,'main')
-pinging(mcping,serveradress + '3001/ping','mc api')
-pinging(yt_dlp,serveradress + '3002/yt-dlp','yt-dlp api',)
+pinging(ping,pingapi,'main');
+pinging(mcping,serveradress + ':3001/','mc api');
+pinging(yt_dlp,serveradress + ':3002/','yt-dlp api',);
+pinging(mysql_ping,serveradress + ':3003/','SQL Database');

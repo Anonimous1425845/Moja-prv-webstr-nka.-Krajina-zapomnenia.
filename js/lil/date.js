@@ -10,7 +10,7 @@ function formatedDate(){
     const month = now.getMonth() + 1;
     const year = now.getFullYear();
 
-    const ô = ' '
+    const ô = '.'
     const ň = ':'
 
     const formated = day + ô + month + ô + year + ' | ' + hours + ň + minutes + ň + seconds + ň + miliseconds

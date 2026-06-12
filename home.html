@@ -61,6 +61,9 @@
         </details>
     </section>
     <section>
+        <p>Správa dňa: <span id="motd"></span></p>
+    </section>
+    <section>
         <h1>Music</h1>
         <section>
             <section>
@@ -100,6 +103,7 @@
             <p id="ping-stat">Down :(</p>
             <p><a href="/mc-ping/index.html" id="mcping-stat" class="link">Unknown :/</a></p>
             <p><a href="/yt-dlp-downloader/index.html" id="yt-dlp-stat" class="link">Unknown :/</a></p>
+            <p><a href="/db-frontend/index.html" id="mysql-stat" class="link">Unknown :/</a></p>
         </div>
     </section>
     <section>
@@ -116,12 +120,13 @@
     <section>
 	    Powered by <a class="dlink" href="https://nginx.org/">Nginx</a>
     </section>
+    <script type="module" src="js/motd.js"></script>
     <script src="js/slider.js"></script>
     <script src="js/home.js"></script>
     <script src="js/msg.js"></script>
     <script>
-        msg('Welcomen')
-        console.log("main loaded")
+        msg('Welcomen');
+        console.log("main loaded");
     </script>
 </body>
 </html>
