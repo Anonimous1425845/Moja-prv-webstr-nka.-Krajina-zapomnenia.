@@ -1,12 +1,11 @@
 const dbcreadentials = JSON.parse(require('fs').readFileSync('./connect-conf.json', 'utf8'));
+const { "pass": configuredpass } = JSON.parse(require('fs').readFileSync('./pass.json', 'utf8'));
+const { "pass": pass } = JSON.parse(require('fs').readFileSync('./pass.json', 'utf8'));
 const formatedDate = require('../js/lil/date');
-const configuredpass = require('./Password');
 const mysql = require('mysql2/promise');
 const express = require('express');
 const cors = require('cors');
-const pass = require('./Password');
 const app = express();
-exports.app = app;
 const PORT = 3003;
 
 app.use(cors());
@@ -23,10 +22,12 @@ app.get('/',
 
 app.get('/select',
     async (req, res) => {
+        console.log('Got select request')
         const table = req.query.t;
         const Time = formatedDate();
+        let connection;
         try{
-            const connection = await mysql.createConnection(dbcreadentials);
+            connection = await mysql.createConnection(dbcreadentials);
             console.log('Connector: Got 2 Database!');
 
             const [rows] = await connection.execute(`SELECT * FROM ${table}`);
@@ -38,7 +39,7 @@ app.get('/select',
                 time: Time
             });
             console.log('SENDER: Data Send!');
-            await connection.end();
+            
             console.log('EXIT CODE: 0');
 
         }catch(err){
@@ -49,6 +50,8 @@ app.get('/select',
             })
             console.error('ERR: ', err.message);
             console.log('EXIT CODE: 1');
+        } finally {
+            await connection.end();
         }
     }
 );
@@ -65,8 +68,9 @@ app.get('/insert',
         const VALUES = req.query.values;
         const Time = formatedDate();
         if(password === configuredpass || passhead === configuredpass){
-            const connection = await mysql.createConnection(dbcreadentials);
+            let connection;
             try{
+                connection = await mysql.createConnection(dbcreadentials);
                 if(!TABLE){return};
                 if(!COLUMS){return};
                 if(!VALUES){return};
@@ -89,6 +93,7 @@ app.get('/insert',
                     CODE: 500
                 });
                 console.log('Yup i failed');
+                console.log('EXIT Code 1');
             } finally {
                 await connection.end();
             }

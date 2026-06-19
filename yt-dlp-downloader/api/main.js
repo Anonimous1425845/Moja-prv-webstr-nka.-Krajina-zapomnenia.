@@ -11,6 +11,14 @@ const PORT = 3002;
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        status: 'online',
+        online: true
+    });
+    return;
+})
+
 // shared code
 // start processing
 // OLD (Legacy)
@@ -185,7 +193,7 @@ app.get('/yt-dlp', async (req, res) => {
             console.log('stream: started search for the stream');
             // 2. Vykonanie príkazu
             // Používame double quotes a escapovanie pre základnú bezpečnosť
-            const { stdout, stderr } = await exec(`yt-dlp --js-runtimes deno --force-overwrites --no-playlist -cookies --prefer-free-formats -f ${f} -g "${videoUrl.replace(/"/g, '')}"`);
+            const { stdout, stderr } = await exec(`yt-dlp --js-runtimes deno --force-overwrites --no-playlist --prefer-free-formats -f ${f} -g "${videoUrl.replace(/"/g, '')}"`);
 
             if (stderr) {
                 console.warn('stream: yt-dlp stderr:', stderr);
@@ -222,7 +230,7 @@ app.get('/yt-dlp/download', async (req, res) => {
     let f = getF(fraw);
 
     let yt_dlp_args = [
-        "--js-runtimes", "deno", "--extractor-args", "-cookies"
+        "--js-runtimes", "deno", "--extractor-args"
     ];
     
     let extension;

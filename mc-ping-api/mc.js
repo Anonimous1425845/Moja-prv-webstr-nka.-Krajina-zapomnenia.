@@ -6,6 +6,14 @@ const app = express();
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        status: 'online',
+        online: true
+    });
+    return;
+});
+
 app.get('/ping', (req, res) => {
     console.log('------------------------')
     // Získame IP a PORT z adresy, ak tam nie sú, použijeme predvolené
