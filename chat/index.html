@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ezcenter.css">
+    <link rel="stylesheet" href="http://192.168.1.191/css/ezcenter.css">
+    <style>
+        .lp{
+            border: 0;
+            border-radius: 5vh !important;
+        }
+    </style>
+</head>
+<header class="lp">
+    <h1>Before we let you chat</h1>
+</header>
+<body>
+    <p>Please accept these rules</p>
+    <p>1. No trash talk (Swearing for no reason keep it enjoifull as duklock)</p>
+    <p>2. No big spam as it is killing performence of master</p>
+    <p>3. No scams!!! (especialy youngers)</p>
+    <p>4. DO NOT Talk to minors offensive</p>
+    <p>When rules broken ip will be posted on wall of Shame IP's</p>
+    <input style="margin-bottom: 1vh;" id="nick" type="text" placeholder="Nickname">
+    <a class="link" onclick="redir()">I Accept and chat</a>
+    <script>
+        //do the magic of nick
+        const redirEL = document.getElementById('redirrect');
+        const nickEL = document.getElementById('nick');
+        function redir() {
+            const nick = nickEL.value;
+            if(!nick) {
+                alert('insert a nick first');
+                return;
+            }
+            window.location.href = `./chat.html?nick=${nick}`
+        }
+        addEventListener("keydown", (key) => {
+            if (key.key === 'Enter') {
+                redir();
+            }
+        })
+    </script>
+</body>
+</html>

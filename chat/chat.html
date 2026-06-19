@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styles/midnight.css">
+    <style>
+        *{
+            margin: 0;
+        }
+        #aliginRightTop{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            z-index: 10;
+            right: 12px;
+            top: 5px;
+            align-items: right;
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+            height: 97vh;
+        }
+        #msg{
+            /*
+            margin: 1vh;
+            height: 98%;
+            */
+            margin: 1vh;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        #blankEL{
+            width: 100%;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+        }
+        #inputs{
+            
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            bottom: 0.8vh;
+            align-items: center;
+            justify-content: end;
+            margin-bottom: 1vh;
+            gap: 0.8vh;
+            
+        }
+        #inputs textarea{
+            width: 85%;
+            height: 5.8vh;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div id="stats">UROBIŤ AUTO RECONNECT a asi aj globálny ken na uvodnú stránku 'HOME' key
+            <div id="aliginRightTop">
+                <section>
+                    <p style="text-align: right;"><span id="pingEL">Ping</span>--<span id="pongEL">Pong</span></p>
+                </section>
+                <section>
+                    <p>
+                        Is Connected? 
+                        <span id="isopen"></span>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="container">
+            <div id="msg">
+                <div id="blankEL"></div>
+            </div>
+            <div id="inputs">
+                <div style="display: flex; flex-direction: row;">
+                    <p style="margin-right: 5px;">May NOT delete text after send?</p><input type="checkbox" name="dontdelete?" id="mayDontDelete">
+                </div>
+                <textarea style="margin-top: 1vh;" id="messageinput" placeholder="Type message here!"></textarea>
+                <button onclick="SendMSG(document.getElementById('messageinput').value)">Send ME!</button>
+                <div style="margin: 0; padding: 0;">
+                    <p>You can use Inesrt Key on keboard as well</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <script>
+            function FINE(yum) {
+                const praseHeight = ''
+            }
+
+            const watchEL = document.getElementById('inputs');
+
+            const sizeShift = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const actualSize = entry.contentRect.height;
+
+                    FINE(actualSize);
+                }
+            });
+            sizeShift.observe(watchEL);
+
+            addEventListener("keydown", (key) => {
+                if(key.key === 'Insert') {
+                    SendMSG(document.getElementById('messageinput').value);
+                    key.preventDefault();
+                }
+            });
+        </script>
+        <script src="./chat.js"></script>
+    </section>
+</body>
+</html>
