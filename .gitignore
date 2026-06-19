@@ -2,6 +2,7 @@ custom_discs_test_rp.zip
 Nyan-Cat-Original.gif
 
 node_modules/
+assets/44dirty/
 
 assets/videos/sg/
 Eli&eli.jpg
@@ -9,3 +10,4 @@ Password.js
 conect-conf.js
 connect-conf.json
 pass.json
+*.log
