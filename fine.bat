@@ -3,22 +3,24 @@ clear
 echo FINE!
 echo --------------------------------------------------
 cd ping-api
-start node main.js
+start node .
 cd ..
 echo --------------------------------------------------
 cd mc-ping-api
-start node mc.js
+start node .
 cd ..
 echo --------------------------------------------------
-cd yt-dlp-downloader
-cd api
-start node main.js
-cd ..
-cd ..
+cd yt-dlp-downloader/api
+start node .
+cd ../..
 echo --------------------------------------------------
 cd mysql-db-to-json-api
 start node .
 cd ..
+echo --------------------------------------------------
+cd chat/api
+start node .
+cd ../..
 echo --------------------------------------------------
 start php -S 0.0.0.0:8080
 echo OK
