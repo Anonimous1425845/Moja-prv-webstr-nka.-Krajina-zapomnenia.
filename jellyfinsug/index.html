@@ -31,10 +31,18 @@
                 if(resultjson.succes){
                     successhow.innerText = 'Úspešne poslané!';
                 } else {
-                    successhow.innerText = 'Nastala chiba!';
+                    let Temp = 'Nastala chiba!';
+                    if (result.status === 401) {
+                        Temp = Temp + ' Neauthorizovaný (Zlé heslo)';
+                    } else if (result.status === 500) {
+                        Temp = Temp + ' Server Zlihal!';
+                    };
+                    successhow.innerText = Temp;
                 }
-            } catch(error) { alert('api error'); }
-        }
+            } catch(error) {
+                alert('api error ' + error);
+            };
+        };
     </script>
 </body>
 </html>
