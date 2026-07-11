@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+}
+body * {
+    margin: 0.5vh !important;
+}
+input::placeholder {
+    /* Default */
+    text-align: center;
+}
+input::-webkit-input-placeholder{
+    /* Legacy */
+    text-align: center;
+}
+input:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+input::-moz-placeholder {
+    /* Firefox 19+*/
+    text-align: center;
+}
+input:-ms-input-placeholder {
+    /* msedge */
+    text-align: center;
+}
