@@ -193,7 +193,7 @@ app.get('/yt-dlp', async (req, res) => {
             console.log('stream: started search for the stream');
             // 2. Vykonanie príkazu
             // Používame double quotes a escapovanie pre základnú bezpečnosť
-            const { stdout, stderr } = await exec(`yt-dlp --js-runtimes deno --force-overwrites --no-playlist --prefer-free-formats -f ${f} -g "${videoUrl.replace(/"/g, '')}"`);
+            const { stdout, stderr } = await exec(`yt-dlp --plugin-dirs "C:\\yt-dlp\\YT4K\\yt_dlp_plugins" --live-from-start --js-runtimes deno --no-playlist  -f ${f} -g "${videoUrl.replace(/"/g, '')}"`); // --force-overwrites --prefer-free-formats
 
             if (stderr) {
                 console.warn('stream: yt-dlp stderr:', stderr);
