@@ -1,15 +1,24 @@
 import { getHostname } from '../js/lil/get-host.js';
+const CCEL = document.getElementById('customcollum');
 const GOTOHOST = getHostname();
+const Table = new URLSearchParams(window.location.search).get('t') || 'text';
+const cDIDArg = new URLSearchParams(window.location.search).get('id') || null;
+const cDColumArg = new URLSearchParams(window.location.search).get('colum') || CCEL.value || null;
 
 async function Get(){
     try{
-        const thejson = await fetch(`http://${GOTOHOST}:3003/select?t=text`);
+        const thejson = await fetch(`http://${GOTOHOST}:3003/select?t=${Table}`);
 
         const data = await thejson.json();
+        console.log(data)
 
         // Pre každý objekt vytvoríme sekciu
         data.data.forEach(item => {
             const block = document.createElement("div");
+            if(cDIDArg || cDColumArg){
+                const cDID = item[cDIDArg || cDColumArg]; // 'item.' + cDIDArg;
+                item.data = cDID;
+            }
             
             block.style.border = "1px solid #2e2e2e";
             block.style.padding = "8px";
@@ -47,6 +56,7 @@ async function Get(){
     }catch(err){
         console.error('Blast Processing Falied!');
         console.warn('PLEASE Tell me i am stupid!');
+        console.warn(err);
     }
 }
 
