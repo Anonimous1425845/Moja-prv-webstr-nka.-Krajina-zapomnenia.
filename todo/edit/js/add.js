@@ -3,12 +3,16 @@ async function Send(toid,who) {
     const data = document.getElementById(toid).value;
     const key = document.getElementById('key').value;
     try {
-        const response = await fetch(`http://${window.location.hostname}:3003/insert?t=todoeli&colums=todo&values=${encodeURIComponent(data)}`, {
+        const response = await fetch(`http://${window.location.hostname}:3003/insert?t=todo${who}&colums=todo&values="${encodeURIComponent(data)}"`, {
             headers: {
                 'pass': key
             }
         });
-        succes = true;
+        if(response.status === 202) {
+            succes = true;
+        } else {
+            succes = 401;
+        }
     } catch (err) {
         succes = err;
     } finally {

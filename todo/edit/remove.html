@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO - Pridať</title>
+    <title>TODO - Zmazať</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/styles/midnight.css">
     <link rel="stylesheet" href="../../css/center_input.css">
 </head>
 <body>
-    <p>Pridať Na list</p>
+    <p>Odobrať z listu</p>
     <input id="name" type="text" placeholder="napíš svoje meno eli / domi">
     <input style="width: 80%" id="key" type="text" placeholder="vložťe kľúč prosím">
-    <textarea name="add" id="texttoadd" style="width: 78vh; height: 20vh;"></textarea>
-    <button onclick="Send('texttoadd',document.getElementById('name').value)">Poslať</button>
-    <script>
-        const check1 = document.getElementById('check1');
-        const check2 = document.getElementById('check2');
-    </script>
-    <script src="./js/add.js"></script>
+    <input type="number" name="ListID" id="ListID" placeholder="Vložťe číslo položky na zmazanie">
+    <button ondblclick="FINE(document.getElementById('ListID').value)">Poslať</button>
+    <script src="./js/remove.js"></script>
 </body>
 </html>

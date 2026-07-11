@@ -1,0 +1,8 @@
+const parms = new URLSearchParams(window.location.search);
+const page = parms.get('page');
+if(page === undefined || page === 'about') {
+    window.location.href = './about.html'
+}
+else if(page === 'stock') {
+    window.location.href = './stock.html'
+} else { window.location.href = './about.html' }
