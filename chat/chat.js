@@ -1,8 +1,8 @@
 // client side sender and reciever
 const port = 4000;
-const hostt = window.location.hostname;
+const hostt = "vs.runner.net";
 const Nick = new URLSearchParams(window.location.search).get('nick');
-const WS = new WebSocket(`ws://${hostt}:${port}`);
+let WS = new WebSocket(`ws://${hostt}:${port}`);
 
 const msgEL = document.getElementById('msg');
 const openEL = document.getElementById('isopen');

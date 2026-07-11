@@ -109,8 +109,8 @@
 
             addEventListener("keydown", (key) => {
                 if(key.key === 'Insert') {
-                    SendMSG(document.getElementById('messageinput').value);
                     key.preventDefault();
+                    SendMSG(document.getElementById('messageinput').value);
                 }
             });
         </script>
