@@ -5,7 +5,7 @@ const iframe = document.getElementById('dusko-frame');
 async function getLinks() {
     try {
         // RAW
-        const response = await fetch('./js/duklock.links.txt');
+        const response = await fetch('./js/sources/duklock.links.txt');
         const text = await response.text();
 
         // Rozdelenie textu podla riadku

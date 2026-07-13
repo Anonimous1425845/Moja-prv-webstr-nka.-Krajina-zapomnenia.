@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RADIO TEST</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ezcenter.css">
+    <link rel="stylesheet" href="../css/radio.css">
+</head>
+<body>
+    <div class="Player">
+        <div class="Player_Top">
+            <span class="playing"> Práve Hrá: </span>
+            <button class="PlayButton" onclick="Radio_Run()">Play</button>
+        </div>
+        <span id="nowPlay" class="Player_Bottom">Propably OFFLINE</span>
+    </div>
+    <script src="../js/radio.js"></script>
+    <script>
+        RegisterTitleEL('nowPlay');
+        Radio_Run();
+    </script>
+</body>
+</html>
