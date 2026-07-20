@@ -66,7 +66,7 @@ if(typeof createSlider === 'function'){
 
 
 //api ping
-const pingapi = 'http://192.168.1.192:3000/ping';
+const pingapi = `http://${window.location.hostname}:3000/ping`;
 const ping = document.getElementById('ping-stat');
 const mcping = document.getElementById('mcping-stat');
 const yt_dlp = document.getElementById('yt-dlp-stat');

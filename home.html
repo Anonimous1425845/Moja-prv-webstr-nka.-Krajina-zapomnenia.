@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krajina Zapomnenia</title>
-    <link rel="icon" href="assets/icons/Linux/Arch.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/slider.css">
+    <link rel="icon" href="./assets/icons/Linux/Arch.png" type="image/png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/slider.css">
 </head>
 <body>
     <!--<section name="temp"><a href="./a/dl.htm">TV HERE</a></section>-->
@@ -18,9 +18,27 @@
             <source src="./assets/videos/sg/Mo-Falk-&-MADZI---Lets-Go-NCS-Remade.mp4" type="video/mp4">
             To old brouser, that sounds like an skill isue!
         </video>
-        <div id="videobuttonpos">
-            <p>NCS Video Controls: </p><button onclick="NCSvideo('play')">play</button><button onclick="NCSvideo('pause')" >pause</button><button onclick="NCSvideo('stop')" >stop</button><button onclick="NCSvideo('download')">download</button>
+        <div class="bottomRight">
+            <div class="radioControl">
+                <iframe id="radioFrame" src="./radio.html" frameborder="0"></iframe>
+            </div>
+            <div class="videobuttonpos">
+                <p>NCS Video Controls: </p><button onclick="NCSvideo('play')">play</button><button onclick="NCSvideo('pause')" >pause</button><button onclick="NCSvideo('stop')" >stop</button><button onclick="NCSvideo('download')">download</button>
+            </div>
         </div>
+        <script>
+            const iframe2344 = document.getElementById('radioFrame');
+            iframe2344.addEventListener('load', function() {
+                resizeIFrameNow();
+                setInterval(() => {
+                    resizeIFrameNow();
+                }, 10000);
+            });
+            function resizeIFrameNow() {
+                // Nastaví výšku iframeu presne podľa výšky jeho obsahu
+                iframe2344.style.height = iframe2344.contentWindow.document.body.scrollHeight + 'px';
+            };
+            </script>
     </section>
     <section>
         <section>
@@ -65,49 +83,49 @@
         </details>
     </section>
     <section>
-        <p>Správa dňa: <span id="motd"></span></p>
+        <p>Správa dňa: <span id="motd">NI</span></p>
     </section>
     <section>
         <h1>Music</h1>
         <section>
             <section>
                 <h2>Theory of everything 1</h2>
-                <audio controls src="assets/music/dj-Nate - Theory of Everything 1.mp3">Theory1</audio>
+                <audio controls src="./assets/music/dj-Nate - Theory of Everything 1.mp3">Theory1</audio>
                 <a class="dlink" download="" href="assets/dj-Nate - Theory of Everything 1.mp3">download</a>
                 <h2>Theory of everything 2</h2>
-                <audio controls src="assets/music/dj-Nate - Theory of Everything 2.mp3">Theory2</audio>
+                <audio controls src="./assets/music/dj-Nate - Theory of Everything 2.mp3">Theory2</audio>
                 <a class="dlink" download="" href="assets/dj-Nate - Theory of Everything 2.mp3">download</a>
                 <h2>Theory of everything 3</h2>
-                <audio controls src="assets/music/dj-Nate - Theory of Everything 3.mp3">theory3</audio>
+                <audio controls src="./assets/music/dj-Nate - Theory of Everything 3.mp3">theory3</audio>
                 <a class="dlink" download="" href="assets/dj-Nate - Theory of Everything 3.mp3">download</a>
             </section>
             <a class="link" href="https://www.youtube.com/@dj-Nate">Theory of everything creator.</a>
         </section>
         <section>
             <h2>Welkomen original win xp setup sound</h2>
-            <audio controls src="assets/music/Welcomen.mp3">Welkomen</audio>
-            <a class="dlink" download="true" href="assets/music/Welcomen.mp3">download</a>
+            <audio controls src="./assets/music/Welcomen.mp3">Welkomen</audio>
+            <a class="dlink" download="true" href="./assets/music/Welcomen.mp3">download</a>
         </section>
     </section>
     <section>
         <h1>Stranky</h1>
         <h2>Odkazy na druhé stránky</h2>
         <section>
-            <p><a class="link" href="text.html">Otvoriť text.html</a></p>
-            <p><a class="link" href="hi.html">hi</a></p>
-            <p><a class="link" href="sudo.html">sudo</a></p>
-            <p><a class="link" href="viac.html">viac</a></p>
-            <p><a class="link" href="php/idk.php">php</a></p>
-            <p><a class="link" href="mc-ping/index.html">minecraft server stats</a></p>
+            <p><a class="link" href="./text.html">Otvoriť text.html</a></p>
+            <p><a class="link" href="./hi.html">hi</a></p>
+            <p><a class="link" href="./sudo.html">sudo</a></p>
+            <p><a class="link" href="./viac.html">viac</a></p>
+            <p><a class="link" href="./php/idk.php">php</a></p>
+            <p><a class="link" href="./mc-ping/index.html">minecraft server stats</a></p>
         </section>
     </section>
     <section>
         <h2>API-Status</h2>
         <div id="api-stat">
             <p id="ping-stat">Down :(</p>
-            <p><a href="/mc-ping/index.html" id="mcping-stat" class="link">Unknown :/</a></p>
-            <p><a href="/yt-dlp-downloader/index.html" id="yt-dlp-stat" class="link">Unknown :/</a></p>
-            <p><a href="/db-frontend/index.html" id="mysql-stat" class="link">Unknown :/</a></p>
+            <p><a href="./mc-ping/index.html" id="mcping-stat" class="link">Unknown :/</a></p>
+            <p><a href="./yt-dlp-downloader/index.html" id="yt-dlp-stat" class="link">Unknown :/</a></p>
+            <p><a href="./db-frontend/index.html" id="mysql-stat" class="link">Unknown :/</a></p>
         </div>
     </section>
     <section>
@@ -116,7 +134,7 @@
     </section>
     <section>
         <h1>Cat (Focal Fossa)<a class="link" href="https://www.releases.ubuntu.com/focal/">(Ubuntu 20.04)</a><a class="link" href="https://www.releases.ubuntu.com/focal/">(Ubuntu 20.04.6 LTS)</a></h1>
-        <img style="border-radius: 1vh;" width="960" height="540" src="assets/pictures/Focal-Fossa_WP_1920x1080.png" alt="Focal Fossa HDR">
+        <img style="border-radius: 1vh;" width="960" height="540" src="./assets/pictures/Focal-Fossa_WP_1920x1080.png" alt="Focal Fossa HDR">
     </section>
     <section>
         <marquee behavior="" direction="">Font: <a class="link" href="https://minecraft.wiki/w/Mojangles">Mojangles</a> maded for <a class="link" href="https://en.wikipedia.org/wiki/Mojang_Studios">mojang specifications</a> in 2003. Used in <a class="link" href="https://minecraft.net">Minecraft</a>. <a class="dlink" href="assets/fonts/minecraftsevenv2.woff2">download_v2</a> or <a class="dlink" href="assets/fonts/minecraftseven.ttf">older download</a></marquee>
@@ -124,10 +142,10 @@
     <section>
 	    Powered by <a class="dlink" href="https://nginx.org/">Nginx</a>
     </section>
-    <script type="module" src="js/motd.js"></script>
-    <script src="js/slider.js"></script>
-    <script src="js/home.js"></script>
-    <script src="js/msg.js"></script>
+    <script type="module" src="./js/motd.js"></script>
+    <script src="./js/slider.js"></script>
+    <script src="./js/home.js"></script>
+    <script src="./js/msg.js"></script>
     <script>
         msg('Welcomen');
         console.log("main loaded");

@@ -20,6 +20,17 @@ async function Radio_Run() {
         };
     };
 };
+async function Radio_Stop() {
+    try {
+        document.getElementById('radioEL').remove();
+    } catch (err) {
+        if (typeof msg === 'function') {
+            msg(err);
+        } else {
+            alert(err);
+        }
+    }
+}
 async function title_Run() {
     if (!titleEL) {return};
     // NOW ONLY SINGLE SOURCE

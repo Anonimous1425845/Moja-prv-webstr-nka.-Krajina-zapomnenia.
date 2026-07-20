@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
 
-    background-color: rgb(54, 54, 54);
+    background-color: rgba(70, 70, 70, 0.5);
     color: rgb(190, 190, 190);
     border: 1vh solid rgba(83, 6, 6, 0.7);
     padding: 5px;
@@ -17,28 +17,46 @@
     transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
 }
 .Player:hover{
-    background-color: rgba(70, 70, 70, 0.7);
+    background-color: rgb(54, 54, 54);
     border-color: rgba(136, 4, 4, 0.75);
     box-shadow: 0.55vh 0.55vh rgba(136, 4, 4, 0.75);
 }
-.PlayButton{
+.PlayButtons{
     display: flex;
+    flex-direction: row;
     margin-left: auto;
     margin-bottom: 8px;
-
+}
+.PlayButton1{
+    margin-left: 3px;
     padding: 5px;
     font-size: 16px;
     background-color: rgb(48, 48, 48);
     color: rgb(190, 190, 190);
-    border: 0.5vh solid rgba(97, 28, 28, 0.7);
+    border-radius: 3vh;
+    border: 1px solid rgba(97, 28, 28, 0.7);
     cursor: pointer;
-    border-radius: 1vh;
-
+    
     transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
 }
-.PlayButton:hover{
+.PlayButton2{
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgb(48, 48, 48);
+    color: rgb(190, 190, 190);
+    border-radius: 3vh;
+    border: 1px solid rgba(97, 28, 28, 0.7);
+    cursor: pointer;
+    
+    transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
+}
+.PlayButton1:hover{
     background-color: rgba(48, 48, 48, 0.7);
-    border: 1vh solid rgb(134, 16, 16);
+    border: 2px solid rgb(134, 16, 16);
+}
+.PlayButton2:hover{
+    background-color: rgba(48, 48, 48, 0.7);
+    border: 2px solid rgb(134, 16, 16);
 }
 .playing{
     margin-left: 1vh;

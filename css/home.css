@@ -9,7 +9,7 @@
     object-fit: cover;
 }
 
-#videobuttonpos{
+.bottomRight{
     position: fixed;
     bottom: 8px;
     right: 20px;
@@ -19,8 +19,13 @@
     overflow: hidden;
     display: flex;
     gap: 5px;
+    flex-direction: column;
 }
-#videobuttonpos button{
+.videobuttonpos{
+    display: flex;
+    flex-direction: row;
+}
+.videobuttonpos button{
     /*padding: 8px 14px;*/
     font-size: 14px;
     cursor: pointer;
@@ -30,8 +35,15 @@
     color: #0b5353;
     text-shadow: #06aaaa 0 0 0.2px;
 }
-#videobuttonpos p{
+.videobuttonpos p{
     margin: 0;
+}
+
+.radioControl{
+    margin-left: auto;
+}
+.radioControl iframe{
+    border-radius: 1vh;
 }
 
 .toggle-input:checked + .toggle-label{

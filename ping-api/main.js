@@ -16,6 +16,15 @@ if(localip === true){
     IP = '192.168.1.192';
 }
 
+app.get('/',
+    (req, res) => {
+        res.status(200).json({
+            online: true,
+            status: 'Online'
+        });
+    }
+);
+
 app.get('/ping',
     async (req, res) => {
         let out
