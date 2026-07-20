@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godziny</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/ezcenter.css">
+    <style>
+        p{
+            border: 0.5vh solid rgb(126, 42, 3);
+            border-radius: 1vh;
+            background-color: rgb(44, 44, 44);
+            padding: 1vh;
+            font-size: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <p>Godziny: <span id="time" class="time"></span></p>
+    <script type="module">
+        import { formatedDateJSON } from './js/lil/date.json.js';
+        document.addEventListener("DOMContentLoaded", () => {
+            // Fast CPU Code
+            function updateClock(run) {
+                // Create a Date object using the server time
+                const jsond = formatedDateJSON();
+                const data = JSON.parse(jsond);
+                if (run === 'run1') {
+                    console.log(data);
+                }
+                document.getElementById('time').innerText = `${data.hours}:${data.minutes}:${data.seconds}`;
+            }
+
+            // Start the clock and update it every second
+            updateClock('run1');
+            setInterval(updateClock, 1000);
+        });
+    </script>
+</body>
+</html>
