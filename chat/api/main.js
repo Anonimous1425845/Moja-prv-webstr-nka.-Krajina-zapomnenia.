@@ -1,7 +1,7 @@
 // Websocket chat api to avoid dirrect connection and IP Fishing
 // Runs on 4000 and uses json to comunicate
 const wss = require('ws');
-const formatedDate = require('../../js/lil/date');
+const formatedDate = require('../../js/lil/commonjs/date.cjs');
 // import { formatedDateJSON } from '../../js/lil/date'
 const WS = new wss.Server({ port: 4000 });
 

@@ -4,13 +4,15 @@ const TARGET_IP = params.get('ip') || 'play.hypixel.net';
 const TARGET_PORT = params.get('port') || 25565;
 
 // Toggle localhost api
-const DebugAPIConnect = false
+const DebugAPIConnect = 'dynamic';
 // Toggle localhost icoip
-const icoipdebug = false
+const icoipdebug = 'dynamic';
 
 // Dont change
 let icoip;
-if (icoipdebug === false) {
+if (icoipdebug === 'dynamic') {
+    icoip = `http://${window.location.host}/dev/mc-ping/default.png`;
+} else if (icoipdebug === false) {
     icoip = "http://192.168.1.192/mc-ping/default.png"
 } else {
     icoip = './default.png'
@@ -103,9 +105,12 @@ async function updateStatus(ip, port) {
     try {
         // Posielame IP a PORT ako argumenty v URL
         let response;
+        if (DebugAPIConnect === 'dynamic') {
+            response = await fetch(`http://${window.location.hostname}:3001/ping?ip=${ip}&port=${port}`);
+        } else
         if (DebugAPIConnect === false) {
             response = await fetch(`http://192.168.1.192:3001/ping?ip=${ip}&port=${port}`);
-        }else{
+        } else {
             response = await fetch(`http://localhost:3001/ping?ip=${ip}&port=${port}`);
         }
         const data = await response.json();

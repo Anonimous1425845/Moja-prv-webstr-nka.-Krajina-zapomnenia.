@@ -1,13 +1,15 @@
 const dbcreadentials = JSON.parse(require('fs').readFileSync('./connect-conf.json', 'utf8'));
 const { "pass": configuredpass, "pass2": configuredpass2 } = JSON.parse(require('fs').readFileSync('./pass.json', 'utf8'));
 const { "pass": pass } = JSON.parse(require('fs').readFileSync('./pass.json', 'utf8'));
-const formatedDate = require('../js/lil/date');
+const formatedDate = require('../js/lil/commonjs/date.cjs');
 const mysql = require('mysql2/promise');
 const express = require('express');
 const cors = require('cors');
 const { table, time } = require('console');
 const app = express();
 const PORT = 3003;
+
+console.log('Start at: ' + formatedDate());
 
 console.log("pass set to: " + configuredpass);
 
