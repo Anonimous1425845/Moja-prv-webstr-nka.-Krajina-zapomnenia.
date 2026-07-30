@@ -11,3 +11,6 @@ conect-conf.js
 connect-conf.json
 pass.json
 *.log
+nonupload/*
+json/nonupload/*
+*.nonupload

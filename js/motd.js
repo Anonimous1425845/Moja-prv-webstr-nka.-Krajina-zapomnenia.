@@ -16,8 +16,8 @@ if(Hostname){
 async function motd(whereid){
     const goTowindow = document.getElementById(whereid);
     try{
-        //const thejson = await fetch(`http://${Hostname}:3003/select?t=motd`);
-        const thejson = await fetch('./dummy.json');
+        const thejson = await fetch(`http://${Hostname}:3003/select?t=motd`);
+        // const thejson = await fetch('../json/nonupload/dummymotddb.json');
         const data = await thejson.json();
 
         const idread = data.data.map(item => item.id);

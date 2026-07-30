@@ -11,7 +11,7 @@ const PORT = 3003;
 
 console.log('Start at: ' + formatedDate());
 
-console.log("pass set to: " + configuredpass);
+console.log("pass set to: " + configuredpass + ',' + configuredpass2);
 
 app.use(cors());
 
