@@ -1,4 +1,5 @@
 #mc-status-card{
+    
     border: 2px solid #333;
     padding: 15px;
     border-radius: 10px;
@@ -29,6 +30,17 @@
     z-index: -1;
 }
 
+#mc-status-card span,li,strong{
+    background-color: rgba(32, 32, 32, 0.6);
+    border-radius: 1vh;
+    padding: 0.3vh;
+}
+
+#player-count{
+    color: rgb(204, 204, 204);
+    background-color: rgba(24, 24, 24, 0.6);
+}
+
 #server-icon{
     opacity: 58%;
     border-radius: 10px;
@@ -37,7 +49,7 @@
 }
 #server-version{
     color: #757575;
-    text-decoration: underline 2px rgb(36, 36, 214) !important;
+    /*text-decoration: underline 2px rgb(36, 36, 214) !important;*/
 }
 #server-motd{
     color: #6d6d6d;
