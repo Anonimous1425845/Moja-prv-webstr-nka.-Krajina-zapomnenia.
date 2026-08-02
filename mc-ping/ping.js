@@ -41,7 +41,7 @@ function parseMinecraftColors(motd) {
     // Pomocná funkcia na spracovanie jednej časti JSONu
     function processPart(part) {
         if (typeof part === 'string') {
-            return `<span>${part}</span>`;
+            return part ? `<span>${part}</span>` : ""; //check for empty string
         }
 
         let text = part.text || "";
@@ -59,8 +59,12 @@ function parseMinecraftColors(motd) {
         if (part.underlined) style += "text-decoration: underline;";
         if (part.strikethrough) style += "text-decoration: line-through;";
 
-        let html = `<span style="${style}">${text}</span>`;
+        let html = "";
 
+        // Span only if text present
+        if(text) {
+            html = `<span style="${style}">${text}</span>`;
+        }
         // Ak má časť v sebe ďalšie časti (extra)
         if (part.extra && Array.isArray(part.extra)) {
             part.extra.forEach(extraPart => {
@@ -70,6 +74,7 @@ function parseMinecraftColors(motd) {
 
         return html;
     }
+    
     console.log(motd)
     // Ak je to už hotový objekt (JSON)
     if (typeof motd === 'object') {
@@ -123,6 +128,7 @@ function parseMinecraftColors(motd) {
 
         // Don't render empty spans if there's no actual content after a code (e.g., stacked codes like §c§l)
         if (!content) return;
+        console.log('FAWE: ' + content);
 
         let style = `color: ${currentColor};`;
         if (isBold) style += "font-weight: bold;";

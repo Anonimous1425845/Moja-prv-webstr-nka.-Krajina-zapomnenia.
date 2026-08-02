@@ -54,6 +54,9 @@
 #server-motd{
     color: #6d6d6d;
     text-decoration: underline 1.5px #7e7e7e !important;
+    /* once used as horizontal pannel grid*/
+/*    white-space: pre-wrap;
+    font-family: monospace; /* Optional: helps alignment look like Minecraft */
 }
 #player-list{
     font-size: 0.85em;
