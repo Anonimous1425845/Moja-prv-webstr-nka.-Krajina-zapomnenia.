@@ -22,11 +22,17 @@ app.get('/', (req, res) => {
 // shared code
 // start processing
 // OLD (Legacy)
-const getF = (fraw) => {
+const getF = (fraw,canBVBA) => {
     // 0. Spracovanie f flagu
     // ak je audio
     if (fraw === '0' || fraw === undefined) return 'bestaudio';
-    if (fraw === '1') return 'best';
+    if (fraw === '1') {
+        if (canBVBA === true) {
+            return 'bestvideo+bestaudio';
+        } else {
+            return 'best';
+        }
+    } 
     return null;
 }
 
@@ -193,7 +199,7 @@ app.get('/yt-dlp', async (req, res) => {
             console.log('stream: started search for the stream');
             // 2. Vykonanie príkazu
             // Používame double quotes a escapovanie pre základnú bezpečnosť
-            const { stdout, stderr } = await exec(`yt-dlp --plugin-dirs "C:\\yt-dlp\\YT4K\\yt_dlp_plugins" --live-from-start --js-runtimes deno --no-playlist  -f ${f} -g "${videoUrl.replace(/"/g, '')}"`); // --force-overwrites --prefer-free-formats
+            const { stdout, stderr } = await exec(`SABR-yt-dlp --plugin-dirs "C:\\yt-dlp\\YT4K\\yt_dlp_plugins" --live-from-start --js-runtimes deno --no-playlist  -f ${f} -g "${videoUrl.replace(/"/g, '')}"`); // --force-overwrites --prefer-free-formats
 
             if (stderr) {
                 console.warn('stream: yt-dlp stderr:', stderr);
@@ -333,6 +339,301 @@ app.get('/yt-dlp/download', async (req, res) => {
                 '-f', 'mp3',
                 "pipe:1"
             ];
+            console.log('spawning ffmpeg:', ffmpegArgs);
+            const ff = spawn('ffmpeg', ffmpegArgs);
+
+            let ytFailed = false;
+            ytdlp.stderr.on('data', (d) => {
+                const msg = d.toString();
+                console.log('yt,dlp stderr:', msg);
+
+                if (msg.includes("Requested format is not available")) {
+                    ytFailed = true;
+
+                    console.log("yt-dlp failed → killing ffmpeg");
+
+                    try { ytdlp.kill(); } catch {}
+                    try { ff.kill(); } catch {}
+
+                    if (!res.headersSent) {
+                        res.status(500).end("No audio stream available");
+                    }
+                }
+            });
+
+            // Pipe yt-dlp stdout into ffmpeg stdin, then ffmpeg stdout to response
+            ytdlp.stdout.pipe(ff.stdin);
+            ff.stdout.pipe(res);
+
+            ff.stderr.on('data', (d) => console.log('ffmpeg stderr:', d.toString()));
+
+            ff.on('close', (code) => {
+                console.log('ffmpeg finished with code:', code);
+                if (!ytFailed) res.end();
+            });
+
+            ytdlp.on('error', (err) => console.error('yt-dlp spawn error:', err));
+            ff.on('error', (err) => console.error('ffmpeg spawn error:', err));
+        }
+
+    } catch(error) {
+
+        // 1. Zalógovanie chyby do konzoly servera (aby si vedel, čo sa deje)
+        console.error("download: YT-DLP Error:", error.message);
+
+        // 2. Kontrola, či už náhodou neboli odoslané hlavičky (prevencia pádu Node.js)
+        if (res.headersSent) {
+            return res.end();
+        }
+
+        // 3. Rozlíšenie typu chyby a odpoveď klientovi
+        if (error.message.includes('Incomplete YouTube ID') || error.message.includes('Video unavailable')) {
+            return res.status(400).json({ 
+             success: false, 
+                error: "Neplatná URL alebo video nie je dostupné (súkromné/zmazané)." 
+            });
+        }
+
+        // Všeobecná chyba (napr. problém s FFmpeg alebo sieťou)
+        return res.status(500).json({ 
+            success: false, 
+            error: "Server momentálne nedokáže spracovať toto video. Skúste to neskôr.!!!!"
+        });
+    }
+});
+
+// HELP THIS STUFF NEEDS TO BE PROCESSED IN FFMPEG
+/*
+  /$$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$        /$$   /$$ /$$$$$$$$ /$$       /$$$$$$$ 
+ /$$__  $$| $$_____/| $$$ | $$| $$__  $$      | $$  | $$| $$_____/| $$      | $$__  $$
+| $$  \__/| $$      | $$$$| $$| $$  \ $$      | $$  | $$| $$      | $$      | $$  \ $$
+|  $$$$$$ | $$$$$   | $$ $$ $$| $$  | $$      | $$$$$$$$| $$$$$   | $$      | $$$$$$$/
+ \____  $$| $$__/   | $$  $$$$| $$  | $$      | $$__  $$| $$__/   | $$      | $$____/ 
+ /$$  \ $$| $$      | $$\  $$$| $$  | $$      | $$  | $$| $$      | $$      | $$      
+|  $$$$$$/| $$$$$$$$| $$ \  $$| $$$$$$$/      | $$  | $$| $$$$$$$$| $$$$$$$$| $$      
+ \______/ |________/|__/  \__/|_______/       |__/  |__/|________/|________/|__/      
+
+*/
+//SABR-yt-dlp.exe
+app.get('/yt-dlp/download/sabr', async (req, res) => {
+    console.log('download: new request.');
+    const fraw = req.query.video;
+    console.log('FRAW=' + fraw)
+    const videoUrl = req.query.url;
+    const recodetipe = req.query.recode;
+    const f = getF(fraw,true);
+
+    /*if(!recodetipe){
+        console.log('download: video request has been f_ked up! ');
+    }*/
+    if(!f){
+        console.log('download: video request has been f_ked up!');
+        return res.status(400).json({ success: false, error: "Parameter 'video' must be 0 or 1 or don't define it!" });
+    }; // Ak je f null, pošle sa json error msg a už sa nepokračuje
+
+    try{
+        console.log('download: start of download accured.');
+
+        // Získanie informácií v JSON formáte
+        const info = JSON.parse(execSync(`SABR-yt-dlp --plugin-dirs "C:\\yt-dlp\\YT4K\\yt_dlp_plugins" --live-from-start --js-runtimes deno --no-playlist --dump-json -f "${f}" "${videoUrl.replace(/"/g, '')}"`));
+
+        // ziskavanie nazvu súboru
+        const fName = info.title;
+        const extension = info.ext; // napr. 'webm', 'mkv', 'mp4'
+        const mimeType = (f === 'best') ? `video/${extension}` : `audio/${extension}`;
+
+        // Nastavovanie hlavičiek pre stiahnutie a názov
+        const rawName = fName.replace(/[/\\?%*:|"<>]/g, "_");
+
+        // ASCII fallback (bez diakritiky)
+        const safeAscii = rawName
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+        // UTF‑8 verzia
+        const utf8Name = encodeURIComponent(rawName);
+        
+        res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
+        res.setHeader(
+          "Content-Disposition",
+          `attachment; filename="${safeAscii}.${extension}"; filename*=UTF-8''${utf8Name}.${extension}`
+        );
+
+        console.log('download: streaming file for download called',rawName,'.',extension);
+
+        // RUN
+        console.log('DEBUG BEST F=' + f)
+        const ytdlp = spawn('SABR-yt-dlp', [
+            '-U',
+            '--no-warnings',
+            '--plugin-dirs',
+            'C:\\yt-dlp\\YT4K\\yt_dlp_plugins',
+            '--live-from-start',
+            '--no-playlist',
+            '-f',
+            f,
+            '--downloader', 'ffmpeg',
+            '--downloader-args', 'ffmpeg:-movflags +frag_keyframe+empty_moov', // tels ffmpeg to make the file headers at top of file
+            '-o',
+            '-',
+            videoUrl
+        ]);
+
+        ytdlp.stdout.pipe(res);
+
+        // Sledovanie chýb (ak yt-dlp zlyhá, zapíše chybu do stderr)
+        ytdlp.stderr.on('data', (data) => {
+            console.error(`yt-dlp error: ${data}`);
+        });
+
+        // Až tento event znamená, že sťahovanie skutočne skončilo
+        ytdlp.on('close', (code) => {
+            console.log(`download: Done (exit code ${code})`);
+        });
+
+        // Dobrý zvyk: ošetriť ukončenie spawn procesu
+        ytdlp.on('error', (err) => console.error("download: Spawn error:", err));
+
+    } catch(error) {
+
+        // 1. Zalógovanie chyby do konzoly servera (aby si vedel, čo sa deje)
+        console.error("download: YT-DLP Error:", error.message);
+
+        // 2. Kontrola, či už náhodou neboli odoslané hlavičky (prevencia pádu Node.js)
+        if (res.headersSent) {
+            return res.end();
+        }
+
+        // 3. Rozlíšenie typu chyby a odpoveď klientovi
+        if (error.message.includes('Incomplete YouTube ID') || error.message.includes('Video unavailable')) {
+            return res.status(400).json({ 
+             success: false, 
+                error: "Neplatná URL alebo video nie je dostupné (súkromné/zmazané)." 
+            });
+        }
+
+        // Všeobecná chyba (napr. problém s FFmpeg alebo sieťou)
+        res.status(500).json({ 
+            success: false, 
+            error: "Server momentálne nedokáže spracovať toto video. Skúste to neskôr." 
+        });
+    }
+});
+
+// Auto convert to mp3/4 files
+// Endpoint zavoláš takto: http://localhost:3002/yt-dlp/download?video=1or0&url=SEM_DAJ_YOUTUBE_LINK
+app.get('/yt-dlp/download/sabr/convert', async (req, res) => {
+    console.log('download: new request.');
+    const fraw = req.query.video;
+    const videoUrl = req.query.url;
+    let f = getF(fraw);
+
+    let yt_dlp_args = [
+        "--js-runtimes", "deno", "--plugin-dirs", "C:\\yt-dlp\\YT4K\\yt_dlp_plugins", "--live-from-start"
+    ];
+    
+    let extension;
+    if(f === 'best'){
+        yt_dlp_args.push("-f", "bestvideo+bestaudio", "-o", "-");
+        extension = 'mp4';
+        console.log('this time video');
+    }
+    else if(f === 'bestaudio'){
+        yt_dlp_args.push("-f", "bestaudio", "-o", "-");
+        extension = 'mp3';
+        console.log('this time audio');
+    }
+    else {
+        return res.status(500).json({
+            success: false,
+            message: 'Error at the f processing at endpoint'
+        });
+    }
+
+    if(!f){
+        console.log('download: video request has been f_ked up!');
+        return res.status(400).json({ success: false, error: "Parameter 'video' must be 0 or 1 or don't define it!" });
+    }; // Ak je f invalid, pošle sa json error msg a už sa nepokračuje
+
+    try{
+        console.log('download: start of download accured.');
+
+        // Získanie informácií v JSON formáte (samostatný dump, bez extra args)
+        let fName = 'download'; // default
+        let origExt = null;
+        try {
+            const info = JSON.parse(execSync(`yt-dlp --dump-json "${videoUrl.replace(/"/g, '')}"`));
+            fName = info.title || fName;
+            origExt = info.ext || null;
+        } catch (infoError) {
+            console.warn('download: failed to get info, using default filename:', infoError.message);
+        }
+
+        // const extension = info.ext; // napr. 'webm', 'mkv', 'mp4'
+        // const mimeType = (f === 'best') ? `video/${extension}` : `audio/${extension}`;
+
+        // If extension wasn't determined earlier, pick sensible default
+        if (!extension) {
+            if (f === 'best') extension = origExt || 'mp4';
+            else if (f === 'bestaudio') extension = 'mp3';
+            else extension = origExt || 'bin';
+        }
+
+        // Nastavovanie hlavičiek pre stiahnutie a názov
+        const rawName = fName.replace(/[/\\?%*:|"<>]/g, "_");
+
+        // ASCII fallback (bez diakritiky)
+        const safeAscii = rawName
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+        // UTF‑8 verzia
+        const utf8Name = encodeURIComponent(rawName);
+        
+                res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
+                // správny Content-Type podľa prípony
+                const contentType = (extension === 'mp3') ? 'audio/mpeg' : (extension === 'mp4' ? 'video/mp4' : 'application/octet-stream');
+                res.setHeader('Content-Type', contentType);
+                res.setHeader(
+                    "Content-Disposition",
+                    `attachment; filename="${safeAscii}.${extension}"; filename*=UTF-8''${utf8Name}.${extension}`
+                );
+
+        console.log('download: streaming file for download called',rawName,'.',extension);
+
+        // Get FFMPEG FLAG CONST
+        const ffmpegArgs = [
+            "-hide_banner",
+            "-loglevel", "error",
+            "-i", "pipe:0",
+            "-vn",
+            "-c:a", "libmp3lame",
+            "-b:a", "192k",
+            "pipe:1"
+        ];
+
+        // RUN
+        if (f === 'best') {
+            yt_dlp_args.push(videoUrl);
+            console.log('spawning yt-dlp (video):', yt_dlp_args);
+            const ytdlp = spawn("SABR-yt-dlp", yt_dlp_args);
+            ytdlp.stderr.on('data', (data) => console.log('yt-dlp stderr:', data.toString()));
+            ytdlp.stdout.pipe(res);
+
+            ytdlp.on("close", code => {
+                console.log("download: yt-dlp finished with code:", code);
+                res.end();
+            });
+
+        } else if (f === 'bestaudio') {
+            // For audio: stream best audio from yt-dlp to ffmpeg for conversion to mp3
+            // Build yt-dlp args to output raw audio bytes to stdout
+            ffmpegArgs.push('-f', 'mp3');
+            yt_dlp_args.push(videoUrl);
+            console.log('spawning yt-dlp (audio):', yt_dlp_args);
+            const ytdlp = spawn('SABR-yt-dlp', yt_dlp_args);
+
+            // Spawn ffmpeg to convert incoming stream to mp3
             console.log('spawning ffmpeg:', ffmpegArgs);
             const ff = spawn('ffmpeg', ffmpegArgs);
 
