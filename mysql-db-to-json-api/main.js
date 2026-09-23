@@ -18,34 +18,60 @@ app.use(cors());
 // Ping response =D
 app.get('/',
     async (req, res) => {
-        res.json({
+        res.status(200).json({
             online: true
         })
-        console.log('Ping Handler: Ping Accured!')
+        console.log(`[${req.ip}]` + 'Ping Handler: Ping Accured!');
+    }
+);
+
+app.get('/test',
+    async (req, res) => {
+        console.log(`[${req.ip}] Ping Handler: Testing Database Avaialibity.`);
+        let Status = null;
+        let Statusc = 500;
+        let connection;
+        try {
+            connection = await mysql.createConnection(dbcreadentials)
+            .then(() => {
+                Status = "DataBase Operational!";
+                Statusc = 200;
+            });
+        } catch (err) {
+            Status = "DataBase connection Failed!";
+            Statusc = 503;
+        } finally {
+            res.status(Statusc).json({
+                code: Statusc,
+                status: Status
+            });
+        };
+        console.log(`[${req.ip}] Ping Handler: Finnished Testing Database Avaialibity.`)
+        return;
     }
 );
 
 app.get('/select',
     async (req, res) => {
-        console.log('Got select request')
+        console.log(`[${req.ip}] ` + 'Got select request')
         const table = req.query.t;
         const Time = formatedDate();
         let connection;
         try{
             connection = await mysql.createConnection(dbcreadentials);
-            console.log('Connector: Got 2 Database!');
+            console.log(`[${req.ip}] ` + 'Connector: Got 2 Database!');
 
             const [rows] = await connection.execute(`SELECT * FROM ${table}`);
-            console.log('READER: Readed Data from table:',table);
+            console.log(`[${req.ip}] ` + 'READER: Readed Data from table:',table);
 
             res.json({
                 succes: true,
                 data: rows,
                 time: Time
             });
-            console.log('SENDER: Data Send!');
+            console.log(`[${req.ip}] ` + 'SENDER: Data Send!');
             
-            console.log('EXIT CODE: 0');
+            console.log(`[${req.ip}] ` + 'EXIT CODE: 0');
 
         }catch(err){
             res.json({
@@ -53,8 +79,8 @@ app.get('/select',
                 data: 'err',
                 time: Time
             })
-            console.error('ERR: ', err.message);
-            console.log('EXIT CODE: 1');
+            console.error(`[${req.ip}] ` + 'ERR: ', err.message);
+            console.log(`[${req.ip}] ` + 'EXIT CODE: 1');
         } finally {
             await connection.end();
         }
